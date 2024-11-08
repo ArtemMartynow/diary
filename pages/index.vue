@@ -9,8 +9,8 @@
       moments in one place!
     </p>
     <div class="home__links">
-      <NuxtLink to="/">Log in</NuxtLink>
-      <NuxtLink to="/">Sign up</NuxtLink>
+      <NuxtLink to="/auth/login">Log in</NuxtLink>
+      <NuxtLink to="/auth/register">Sign up</NuxtLink>
     </div>
   </div>
 </template>
