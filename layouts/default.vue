@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen">
-      <slot />
-    </div>
+    <slot />
+  </div>
 </template>
 
 <script setup>

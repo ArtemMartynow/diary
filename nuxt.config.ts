@@ -14,4 +14,5 @@ export default defineNuxtConfig({
     display: 'swap',
   },
   css: ['~/assets/scss/main.scss'],
+  plugins: [ '~/plugins/useNotify.js', ],
 })
