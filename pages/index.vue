@@ -10,7 +10,7 @@
     </p>
     <div class="home__links">
       <NuxtLink to="/auth/login">Log in</NuxtLink>
-      <NuxtLink to="/auth/register">Sign up</NuxtLink>
+      <NuxtLink to="/auth/sign-up">Sign up</NuxtLink>
     </div>
   </div>
 </template>

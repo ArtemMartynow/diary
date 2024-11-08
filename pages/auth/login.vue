@@ -11,7 +11,7 @@
       <div class="login__buttons">
         <button>Login</button>
         <span>or</span>
-        <NuxtLink to="/auth/register">Sign up</NuxtLink>
+        <NuxtLink to="/auth/sign-up">Sign up</NuxtLink>
       </div>
     </div>
   </div>
