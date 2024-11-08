@@ -1,0 +1,23 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: 'Epilogue';
+  overflow: hidden;
+  background: linear-gradient(0deg, rgba(121,81,148,1) 7%, rgba(10,25,77,1) 100%);
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
+p, a {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
