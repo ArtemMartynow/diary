@@ -1,0 +1,124 @@
+.diary-layout {
+  height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: 400px; 
+  min-width: 400px;
+  border-right: 2px solid #a45de2; 
+  text-align: center; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  height: 100vh;
+  position: relative;
+  span {
+    font-size: 48px;
+    color: #e2e2e2;
+    padding: 20px 0;
+    border-bottom: 1px solid #a45de2;
+    flex-shrink: 0;
+  }
+  .sidebar__content {
+    flex-grow: 1;
+    height: calc(100% - 100px);
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width:  7px;
+      height: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #af74f7;
+      border-radius: 10px;
+    }
+    h2 {
+      font-size: 32px;
+      color: #e2e2e2;
+      margin-top: 30px;
+      span {
+        font-size: 24px;
+        word-spacing: 1px;
+        border: none;
+      }
+    }
+    .sidebar__notes {
+      .sidebar__note {
+        color: #e2e2e2;
+        text-align: left;
+        padding: 10px;
+        border: 1px solid #a45de2;
+        margin: 10px;
+        border-radius: 10px;
+        transition: all 0.2s;
+        .sidebar__note_title {
+          font-size: 20px;
+        }
+        p {
+          word-break: break-all;
+        }
+        .sidebar__note_date {
+          font-size: 16px;
+          color: #b8b8b8;
+          border: none;
+        }
+        &:hover {
+          background: #af74f7;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  button {
+    width: 65px;
+    height: 65px;
+    background: #6838a2;
+    border-radius: 50%;
+    transition: all 0.2s;
+    position: absolute;
+    bottom: 20px;
+    left: calc(50% - 32px);
+    img {
+      width: 40px;
+      transform: rotate(45deg);
+      margin: 0 auto;
+    }
+    &:hover {
+      background-color: #a45de2;
+    }
+  }
+}
+
+.home-page {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  padding: 30px;
+  h1 {
+    font-size: 38px;
+    color: #e2e2e2;
+  }
+  .home-page__content {
+    height: 100%;
+    width: 100%;
+    background: #3b3c6b;
+    border-radius: 20px;
+    text-align: left;
+    padding: 40px;
+    position: relative;
+    h2 {
+      font-size: 48px;
+    }
+    p {
+      font-size: 32px;
+      word-break: break-all;
+    }
+    span {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+    }
+  }
+}
