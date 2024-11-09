@@ -10,7 +10,7 @@
         </span>
       </h2>
       <div class="sidebar__notes">
-        <SidebarNote />
+        <NoteCard />
       </div>
     </div>
     <button>

@@ -7,7 +7,6 @@ class AuthApi {
     try {
       let url = ApiBase.baseApiUrl() + 'auth/local/register'
       let response = await http('post', url, form)
-      console.log(response)
       $notify('success', 'You have been successfully registered')
       return response.data
     } catch(error) {
@@ -16,7 +15,14 @@ class AuthApi {
   }
 
   static async login (form) {
-
+    try {
+      let url = ApiBase.baseApiUrl() + 'auth/local'
+      let response = await http('post', url, form)
+      $notify('success', 'You have been successfully signed in')
+      return response.data
+    } catch(error) {
+      throw error
+    }
   }
 }
 
