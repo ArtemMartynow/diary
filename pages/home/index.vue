@@ -16,6 +16,7 @@
 
 <script setup>
 definePageMeta({
-  layout: 'diary'
+  layout: 'diary',
+  middleware: 'auth'
 })
 </script>

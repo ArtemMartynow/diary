@@ -28,6 +28,9 @@
 </template>
 
 <script setup>
+definePageMeta({ 
+  middleware: 'auth'
+})
 import AuthApi from '../../api/auth'
 import { ref } from '#build/imports'
 import { $notify } from "~/plugins/useNotify"
@@ -46,11 +49,13 @@ const login = (form) => {
     router.push('/home')
   })
   .catch((error) => {
-    if (Object.keys(error.data.error.details).length === 0) {
-      $notify('error', error.data.error.message)
-    } else {
-      for (let i = 0; i < error.data.error.details.errors.length; i++) {
-        $notify('error', error.data.error.details.errors[i].message)
+    if (error?.data?.error) {
+      if (error?.data?.error?.details && Object.keys(error.data.error.details).length === 0) {
+        $notify('error', error.data.error.message)
+      } else {
+        for (let i = 0; i < error.data.error.details.errors.length; i++) {
+          $notify('error', error.data.error.details.errors[i].message)
+        }
       }
     }
   })

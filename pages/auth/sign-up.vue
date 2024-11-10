@@ -31,6 +31,10 @@
 </template>
 
 <script setup>
+definePageMeta({ 
+  middleware: 'auth'
+})
+
 import AuthApi from '../../api/auth'
 import { ref } from '#build/imports'
 import { $notify } from "~/plugins/useNotify"
