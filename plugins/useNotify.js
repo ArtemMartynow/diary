@@ -6,7 +6,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(Notifications) 
 })
 
-export function $notify (type, response) {
+export const $notify = (type, response) => {
   const { notify } = useNotification()
   notify({ type: type, text: response, duration: 5000 })
 }
