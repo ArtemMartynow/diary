@@ -41,6 +41,18 @@ class DiaryApi {
       throw error
     }
   }
+
+  static async deleteNote (noteId) {
+    try {
+      let url = ApiBase.baseApiUrl() + `notes/${noteId}`
+      let response = await http('delete', url, null, ApiBase.authHeaders())
+
+      $notify('success', 'You deleted the note')
+      return response
+    } catch(error) {
+      throw error
+    }
+  }
 }
 
 export default DiaryApi

@@ -51,8 +51,10 @@
         margin: 10px;
         border-radius: 10px;
         transition: all 0.2s;
+        position: relative;
         .sidebar__note_title {
           font-size: 20px;
+          border: none;
         }
         p {
           word-break: break-all;
@@ -61,6 +63,14 @@
           font-size: 16px;
           color: #b8b8b8;
           border: none;
+        }
+        .sidebar__note-control {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          img {
+            width: 15px;
+          }
         }
         &:hover {
           background: #af74f7;

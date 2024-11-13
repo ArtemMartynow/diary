@@ -5,7 +5,7 @@ export const useDiaryStore = defineStore('diaryStore', {
     user: {},
     notes: [],
     selectedNote: {},
-    isCreateNote: false
+    isCreateNote: false,
   }),
   actions: {
     setUser(user) {
@@ -25,6 +25,9 @@ export const useDiaryStore = defineStore('diaryStore', {
     },
     addNewNote(note) {
       this.notes.push(note)
+    },
+    deleteNote(noteId) {
+      this.notes = this.notes.filter((note) => note.documentId !== noteId)
     }
   }
 })

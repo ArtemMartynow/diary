@@ -16,6 +16,7 @@
           :title="note.title"
           :text="note.text"
           :data="note.date"
+          :noteId="note.documentId"
         />
       </div>
     </div>
