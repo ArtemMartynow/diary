@@ -3,7 +3,12 @@
     <span class="sidebar__note_title">{{ props.title }}</span>
     <p>{{ props.text }}</p>
     <span class="sidebar__note_date">{{ reverseDate(props.data) }}</span>
-    <div class="sidebar__note-control">
+    <div class="sidebar__note-control flex justify-between">
+      <NuxtImg 
+        src="/images/pencil-solid.svg" 
+        alt="delete" 
+        @click="isEditNote = true" 
+      />
       <NuxtImg 
         src="/images/trash-solid.svg" 
         alt="delete" 
@@ -16,6 +21,13 @@
       buttonText="Delete"
       @confirmAction="deleteNote(props.noteId)"
       @cancel="(n) => isDeleteNote = n"
+    />
+    <ChangeNoteModal 
+      v-if="isEditNote === true"
+      :title="props.title"
+      :text="props.text"
+      :noteId="props.noteId"
+      @close="(n) => isEditNote = n"
     />
   </div>
 </template>
@@ -36,6 +48,7 @@ const props = defineProps({
 })
 
 let isDeleteNote = ref(false)
+let isEditNote = ref(false)
 
 const deleteNote = (noteId) => {
   DiaryApi.deleteNote(noteId)

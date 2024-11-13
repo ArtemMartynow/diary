@@ -53,6 +53,18 @@ class DiaryApi {
       throw error
     }
   }
+  
+  static async editNote (form, noteId) {
+    try {
+      let url = ApiBase.baseApiUrl() + `notes/${noteId}`
+      let response = await http('put', url, form, ApiBase.authHeaders())
+
+      $notify('success', 'You changed the note')
+      return response.data
+    } catch(error) {
+      throw error
+    }
+  }
 }
 
 export default DiaryApi

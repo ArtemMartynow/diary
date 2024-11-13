@@ -68,8 +68,15 @@
           position: absolute;
           right: 10px;
           bottom: 10px;
+          width: 50px;
           img {
-            width: 15px;
+            width: 23px;
+            padding: 5px;
+            border-radius: 3px;
+            transition: all 0.2s;
+            &:hover {
+              background: #3b3c6b;
+            }
           }
         }
         &:hover {
