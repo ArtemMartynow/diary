@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar pb-24">
     <span>Diary</span>
     <div class="sidebar__content">
       <h2 v-if="diaryStore.notes.length === 0">
@@ -15,12 +15,12 @@
           :key="note.id"
           :title="note.title"
           :text="note.text"
-          :data="note.data"
+          :data="note.date"
         />
       </div>
     </div>
     <button>
-      <NuxtImg src="/images/xmark-solid.svg" alt="xmark" />
+      <NuxtImg @click="addNote()" src="/images/xmark-solid.svg" alt="xmark" />
     </button>
   </div>
 </template>
@@ -29,4 +29,8 @@
 import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()
+
+const addNote = () => {
+  diaryStore.openCreateNote()
+}
 </script>

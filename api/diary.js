@@ -1,5 +1,6 @@
 import ApiBase from "./base"
 import { http } from '../composables/useFetch'
+import { $notify } from "~/plugins/useNotify"
 import { useDiaryStore } from '../stores/diaryStore'
 
 class DiaryApi {
@@ -23,6 +24,18 @@ class DiaryApi {
       let response = await http('get', url, null, ApiBase.authHeaders())
 
       diaryStore.setNotes(response.data)
+      return response.data
+    } catch(error) {
+      throw error
+    }
+  }
+
+  static async addNote (form) {
+    try {
+      let url = ApiBase.baseApiUrl() + 'notes'
+      let response = await http('post', url, form, ApiBase.authHeaders())
+
+      $notify('success', 'You have created a new note')
       return response.data
     } catch(error) {
       throw error

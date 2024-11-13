@@ -2,6 +2,7 @@
   <div class="diary-layout">
     <Sidebar />
     <slot />
+    <CreateNoteModal />
   </div>
 </template>
 

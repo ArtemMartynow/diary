@@ -4,7 +4,8 @@ export const useDiaryStore = defineStore('diaryStore', {
   state: () => ({
     user: {},
     notes: [],
-    selectedNote: {}
+    selectedNote: {},
+    isCreateNote: false
   }),
   actions: {
     setUser(user) {
@@ -15,6 +16,15 @@ export const useDiaryStore = defineStore('diaryStore', {
     },
     setSelectedNote(note) {
       this.selectedNote = note
+    },
+    openCreateNote() {
+      this.isCreateNote = true
+    },
+    closeCreateNote() {
+      this.isCreateNote = false
+    },
+    addNewNote(note) {
+      this.notes.push(note)
     }
   }
 })
