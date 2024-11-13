@@ -5,13 +5,12 @@ export function http (method, url, params, header) {
   const config = {
     method: method,
     headers: { 'Content-Type': 'application/json', ...header, },
-    body: JSON.stringify(params),
   }
-
+  
   if (method === 'get') {
     config.params = params
   } else if (method === 'post' || method === 'put' || method === 'delete' || method === 'patch') {
-    config.data = params
+    config.body = JSON.stringify(params)
   }
 
   config.headers = Object.assign(header || {})
