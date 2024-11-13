@@ -26,6 +26,6 @@ import { useDiaryStore } from '../stores/diaryStore'
 const diaryStore = useDiaryStore()  
 
 onMounted(() => {
-  DiaryApi.getProfile()
+  // DiaryApi.getProfile()
 })
 </script>

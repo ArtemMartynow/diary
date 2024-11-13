@@ -5,15 +5,11 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
   let token = StorageHelper.get('token')
 
-  if (to.path === '/auth/login' || to.path === '/auth/sign-up' && token) { 
+  if (!token && to.path === '/home') {
+    return navigateTo('auth/login')
+  }
+
+  if (token && to.path !== '/home') {
     return navigateTo('/home')
   }
-
-  if (!token && to.path !== '/auth/login') { 
-    return navigateTo('/auth/login')
-  }
-
-  if (!token && to.path === '/auth/login') { 
-    return 
-  } 
 })

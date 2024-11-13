@@ -2,7 +2,7 @@
   <div class="sidebar">
     <span>Diary</span>
     <div class="sidebar__content">
-      <h2 v-if="diaryStore.notes.length === 0">
+      <h2 v-if="1 === 0">
         It's empty... for now. <br>
         <span>
           Start writing your 
