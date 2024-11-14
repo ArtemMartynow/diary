@@ -3,7 +3,7 @@
   display: flex;
 }
 
-.sidebar {
+.sidebar, .sidebar_active {
   width: 400px; 
   min-width: 400px;
   border-right: 2px solid #a45de2; 
@@ -126,7 +126,7 @@
   }
 }
 
-.home-page {
+.home-page, .home-page_active {
   text-align: center;
   display: flex;
   align-items: center;
@@ -169,6 +169,128 @@
     span {
       position: relative;
       align-self: flex-end;
+    }
+    .close-note {
+      width: 30px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer; 
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .sidebar {
+    width: 100%;
+    border: none;
+  }
+
+  .sidebar_active {
+    display: none;
+  }
+  
+  .home-page {
+    display: none;
+  }
+
+  .home-page_active {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    padding: 30px;
+    h1 {
+      display: none;
+    }
+    .home-page__content {
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between;
+      height: 100%;
+      width: 100%;
+      background: #3b3c6b;
+      border-radius: 20px;
+      text-align: left;
+      padding: 30px;
+      position: relative;
+      color: #e2e2e2;
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        width:  7px;
+        height: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #af74f7;
+        border-radius: 10px;
+      }
+      h2 {
+        font-size: 48px;
+      }
+      p {
+        font-size: 32px;
+        word-break: break-all;
+        margin-bottom: auto;
+      }
+      span {
+        position: relative;
+        align-self: flex-end;
+      }
+    }
+  }
+}
+
+@media (max-width: 490px) {
+  .sidebar {
+    .sidebar-header {
+      img {
+        margin-right: 5px;
+      }
+    }
+    .sidebar__content {
+      .sidebar__notes {
+        .sidebar__note {
+          width: auto;
+          span {
+            font-size: 16px;
+          }
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+  .home-page_active {
+    .home-page__content {
+      h2 {
+        font-size: 34px;
+      }
+      p {
+        font-size: 22px;
+      }
+      .close-note {
+        width: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .sidebar {
+    min-width: 0px;
+  }
+  .home-page_active {
+    .home-page__content {
+      h2 {
+        font-size: 24px;
+      }
+      p {
+        font-size: 12px;
+      }
     }
   }
 }

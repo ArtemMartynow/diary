@@ -60,3 +60,23 @@
     }
   }
 }
+
+@media (max-width: 450px) {
+  .sign-up {
+    .sign-up__content {
+      width: 300px;
+    }
+  }
+}
+
+@media (min-width: 1600px) {
+  .sign-up {
+    .sign-up__content {
+      width: 600px;
+      height: 700px;
+      .sign-up__inputs {
+        margin: 155px 0;
+      }
+    }
+  }
+}

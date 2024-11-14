@@ -60,3 +60,23 @@
     }
   }
 }
+
+@media (max-width: 450px) {
+  .login {
+    .login__content {
+      width: 300px;
+    }
+  }
+}
+
+@media (min-width: 1600px) {
+  .login {
+    .login__content {
+      width: 600px;
+      height: 700px;
+      .login__inputs {
+        margin: 183px 0;
+      }
+    }
+  }
+}

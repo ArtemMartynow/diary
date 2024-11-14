@@ -39,3 +39,28 @@
     }
   }
 }
+
+@media (max-width: 800px) {
+  .home {
+    h1 {
+      font-size: 38px;
+    }
+    p {
+      font-size: 18px;
+      width: 600px;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .home {
+    h1 {
+      font-size: 30px;
+    }
+    p {
+      font-size: 14px;
+      width: auto;
+      padding: 0 10px;
+    }
+  }
+}

@@ -18,6 +18,9 @@ export const useDiaryStore = defineStore('diaryStore', {
     setSelectedNote(note) {
       this.selectedNote = note
     },
+    closeSelectedNote() {
+      this.selectedNote = {}
+    },
     openCreateNote() {
       this.isCreateNote = true
     },

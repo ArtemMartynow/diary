@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar pb-24">
+  <div :class="Object.keys(diaryStore.selectedNote).length === 0 ? 'sidebar pb-24' : 'sidebar_active pb-24'">
     <div class="sidebar-header">
       <NuxtImg 
         src="../public/images/right-from-bracket-solid.svg" 

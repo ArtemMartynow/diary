@@ -1,6 +1,9 @@
 <template>
   <div class="diary-layout">
-    <div v-if="diaryStore.isLoading === false" class="flex w-full">
+    <div 
+      v-if="diaryStore.isLoading === false" 
+      class="flex w-full"
+    >
       <Sidebar />
       <slot />
       <CreateNoteModal />
