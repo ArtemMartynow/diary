@@ -17,19 +17,8 @@ definePageMeta({
   layout: 'diary',
   middleware: 'auth'
 })
-import DiaryApi from '~/api/diary'
-import { onMounted } from 'vue'
 import { reverseDate } from '~/helpers/customFunctions'
 import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()  
-
-onMounted(async () => {
-  try { 
-    await DiaryApi.getProfile() 
-    await DiaryApi.getNotes()
-  } catch (error) { 
-    console.error('Error loading profile or notes:', error) 
-  }
-})
 </script>
