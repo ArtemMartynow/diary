@@ -1,6 +1,11 @@
 <template>
   <div class="sidebar pb-24">
     <div class="sidebar-header">
+      <NuxtImg 
+        src="../public/images/right-from-bracket-solid.svg" 
+        alt="logout"  
+        @click="logout()"
+      />
       <input 
         type="text" 
         placeholder="Search by title"
@@ -34,10 +39,14 @@
 </template>
 
 <script setup>
-import { ref } from '#build/imports';
+import { ref } from '#build/imports'
+import StorageHelper from '~/helpers/localStorageHelper'
+import { $notify } from "~/plugins/useNotify"
+import { useRouter } from 'vue-router'
 import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()
+const router = useRouter()
 
 let searchInput = ref('')
 
@@ -47,6 +56,13 @@ const addNote = () => {
 
 let newNotesList = computed(() => {
   return diaryStore.notes.filter(
-    (note) => note.title.indexOf(searchInput.value) !== -1)
+    (note) => note.title.indexOf(searchInput.value) !== -1
+  )
 })
+
+const logout = () => {
+  StorageHelper.remove('token')
+  router.push('/auth/login')
+  $notify('success', 'You log out')
+}
 </script>
