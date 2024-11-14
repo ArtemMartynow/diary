@@ -11,6 +11,7 @@
         type="text" 
         placeholder="Note title"
         v-model="noteTitle"  
+        @input="handleInput"
       > 
       <textarea 
         placeholder="Note"
@@ -36,6 +37,13 @@ let noteTitle = ref('')
 let noteText = ref('')
 let noteDate = new Date()
 
+const handleInput = () => { 
+  if (noteTitle.value.length > 40) { 
+    noteTitle.value = noteTitle.value.slice(0, 40) 
+    $notify('warning', 'Title can be at most 40 characters long') 
+  } 
+}
+
 const createNote = () => {
   let userId = ref(diaryStore.user?.id)
   let form = ref({
@@ -57,7 +65,7 @@ const createNote = () => {
 
 const handleSubmit = () => { 
   if (!noteTitle.value || !noteText.value) { 
-    $notify('error', 'All fields must be filled in')
+    $notify('warning', 'All fields must be filled in')
     return 
   } 
   createNote() 
