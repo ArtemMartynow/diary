@@ -12,10 +12,12 @@
         placeholder="Note title"
         v-model="noteTitle"  
         @input="handleInput"
+        @keydown.enter="handleSubmit()"
       > 
       <textarea 
         placeholder="Note"
         v-model="noteText"  
+        @keydown.enter="handleSubmit()"
       ></textarea>
       <button 
         @click="handleSubmit()"

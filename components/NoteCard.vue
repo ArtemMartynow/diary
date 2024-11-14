@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref } from '#build/imports';
+import { ref } from '#build/imports'
 import { reverseDate, shortenText } from '~/helpers/customFunctions'
 import DiaryApi from '~/api/diary'
 import { useDiaryStore } from '../stores/diaryStore'

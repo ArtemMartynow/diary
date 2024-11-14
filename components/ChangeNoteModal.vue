@@ -8,22 +8,25 @@
         type="text" 
         placeholder="Note title"
         v-model="noteTitle"  
+        @keydown.enter="editNote()"
       > 
       <textarea 
         placeholder="Note"
         v-model="noteText"  
+        @keydown.enter="editNote()"        
       ></textarea>
       <button 
         @click="editNote()"
       >Edit</button>
     </div>
-    <div class="modal__overplay" @click="diaryStore.closeCreateNote()"></div>
+    <div class="modal__overplay"></div>
   </div>
 </template>
 
 <script setup>
 import { ref } from '#build/imports'
 import DiaryApi from '~/api/diary'
+import { $notify } from '~/plugins/useNotify'
 import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()
@@ -45,10 +48,14 @@ const editNote = () => {
       text: noteText,
     }
   })
-  DiaryApi.editNote(form.value, props.noteId)
-  .then((response) => {
-    diaryStore.editNote(props.noteId, response)
-    emitClose('close', false)
-  })
+  if (noteTitle.value !== '' && noteText.value !== '') {
+    DiaryApi.editNote(form.value, props.noteId)
+    .then((response) => {
+      diaryStore.editNote(props.noteId, response)
+      emitClose('close', false)
+    })
+  } else {
+    $notify('warning', 'All fields must be filled in')
+  }
 }
 </script>

@@ -9,16 +9,19 @@
           type="text" 
           placeholder="Login"
           v-model="form.username"  
+          @keydown.enter="signUp(form)"
         >
         <input
           type="email" 
           placeholder="Email"
           v-model="form.email"  
+          @keydown.enter="signUp(form)"
         >
         <input
           type="password" 
           placeholder="Password"
           v-model="form.password"  
+          @keydown.enter="signUp(form)"
         >
       </div>
       <div class="sign-up__buttons">
@@ -37,7 +40,7 @@ definePageMeta({
 
 import AuthApi from '../../api/auth'
 import { ref } from '#build/imports'
-import { $notify } from "~/plugins/useNotify"
+import { $notify } from '~/plugins/useNotify'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

@@ -1,6 +1,6 @@
 import ApiBase from "./base"
 import { http } from '../composables/useFetch'
-import { $notify } from "~/plugins/useNotify"
+import { $notify } from '~/plugins/useNotify'
 import { useDiaryStore } from '../stores/diaryStore'
 
 class DiaryApi {
@@ -58,7 +58,9 @@ class DiaryApi {
     try {
       let url = ApiBase.baseApiUrl() + `notes/${noteId}`
       let response = await http('put', url, form, ApiBase.authHeaders())
+      const diaryStore = useDiaryStore() 
 
+      diaryStore.setSelectedNote(response.data)
       $notify('success', 'You changed the note')
       return response.data
     } catch(error) {

@@ -41,7 +41,7 @@
 <script setup>
 import { ref } from '#build/imports'
 import StorageHelper from '~/helpers/localStorageHelper'
-import { $notify } from "~/plugins/useNotify"
+import { $notify } from '~/plugins/useNotify'
 import { useRouter } from 'vue-router'
 import { useDiaryStore } from '../stores/diaryStore'
 
@@ -61,8 +61,8 @@ let newNotesList = computed(() => {
 })
 
 const logout = () => {
+  $notify('success', 'You log out')
   StorageHelper.remove('token')
   router.push('/auth/login')
-  $notify('success', 'You log out')
 }
 </script>
