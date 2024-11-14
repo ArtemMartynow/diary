@@ -1,15 +1,13 @@
 <template>
   <div class="home-page">
-    <h1 v-if="diaryStore.user !== {}">
+    <h1 v-if="Object.keys(diaryStore.selectedNote).length === 0">
       There is no note selected. Select an existing 
       note or add a new one to continue.
     </h1>
     <div v-else class="home-page__content">
-      <h2>test1</h2>
-      <p>
-        asdsadasdasdasdsadasdwdsadawdsadawdsadawdasdawdswadsadasdawsdsadawsdwads
-      </p>
-      <span>20-20-2020</span>
+      <h2>{{ diaryStore.selectedNote.title }}</h2>
+      <p>{{ diaryStore.selectedNote.text }}</p>
+      <span>{{ reverseDate(diaryStore.selectedNote.date) }}</span>
     </div>
   </div>
 </template>
@@ -21,6 +19,7 @@ definePageMeta({
 })
 import DiaryApi from '~/api/diary'
 import { onMounted } from 'vue'
+import { reverseDate } from '~/helpers/customFunctions'
 import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()  

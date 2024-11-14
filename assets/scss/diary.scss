@@ -118,25 +118,37 @@
     color: #e2e2e2;
   }
   .home-page__content {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between;
     height: 100%;
     width: 100%;
     background: #3b3c6b;
     border-radius: 20px;
     text-align: left;
-    padding: 40px;
+    padding: 30px;
     position: relative;
     color: #e2e2e2;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width:  7px;
+      height: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #af74f7;
+      border-radius: 10px;
+    }
     h2 {
       font-size: 48px;
     }
     p {
       font-size: 32px;
       word-break: break-all;
+      margin-bottom: auto;
     }
     span {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
+      position: relative;
+      align-self: flex-end;
     }
   }
 }

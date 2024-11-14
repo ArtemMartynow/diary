@@ -17,6 +17,7 @@
           :text="note.text"
           :data="note.date"
           :noteId="note.documentId"
+          @click="diaryStore.setSelectedNote(note)"
         />
       </div>
     </div>
