@@ -16,4 +16,10 @@ export default defineNuxtConfig({
   },
   css: ['~/assets/scss/main.scss'],
   plugins: [ '~/plugins/useNotify.js' ],
+  app: { 
+    head: { 
+      title: 'Diary', 
+      meta: [ { name: 'description', content: 'Diary' } ] 
+    } 
+  }
 })
