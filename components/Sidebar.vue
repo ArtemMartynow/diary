@@ -1,6 +1,12 @@
 <template>
   <div class="sidebar pb-24">
-    <span>Diary</span>
+    <div class="sidebar-header">
+      <input 
+        type="text" 
+        placeholder="Search by title"
+        v-model="searchInput"  
+      >
+    </div>
     <div class="sidebar__content">
       <h2 v-if="diaryStore.notes.length === 0">
         It's empty... for now. <br>
@@ -11,7 +17,7 @@
       </h2>
       <div class="sidebar__notes" v-else>
         <NoteCard 
-          v-for="note in diaryStore.notes"
+          v-for="note in newNotesList"
           :key="note.id"
           :title="note.title"
           :text="note.text"
@@ -28,11 +34,19 @@
 </template>
 
 <script setup>
+import { ref } from '#build/imports';
 import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()
 
+let searchInput = ref('')
+
 const addNote = () => {
   diaryStore.openCreateNote()
 }
+
+let newNotesList = computed(() => {
+  return diaryStore.notes.filter(
+    (note) => note.title.indexOf(searchInput.value) !== -1)
+})
 </script>

@@ -13,12 +13,19 @@
   justify-content: space-between; 
   height: 100vh;
   position: relative;
-  span {
-    font-size: 48px;
+  .sidebar-header {
     color: #e2e2e2;
     padding: 20px 0;
     border-bottom: 1px solid #a45de2;
     flex-shrink: 0;
+    input {
+      width: 90%;
+      background: none;
+      border: 2px solid #6838a2;
+      padding: 10px;
+      border-radius: 10px;
+      outline: none;
+    }
   }
   .sidebar__content {
     flex-grow: 1;
