@@ -1,42 +1,50 @@
 <template>
-  <div 
-    class="create-note-modal" 
-    v-if="diaryStore.isCreateNote === true"
-  >
-    <div class="create-note-modal__window">
+  <div class="change-note-modal">
+    <div class="change-note-modal__window">
       <h2 class="text-4xl mt-5 text-center">
-        Create new note
+        {{ componentText }}
       </h2>
       <input 
         type="text" 
         placeholder="Note title"
         v-model="noteTitle"  
-        @input="handleInput"
-        @keydown.enter="handleSubmit()"
+        @keydown.enter="editNote()"
+        @input="handleInput()"
       > 
       <textarea 
         placeholder="Note"
         v-model="noteText"  
-        @keydown.enter="handleSubmit()"
+        @keydown.enter="editNote()"        
       ></textarea>
       <button 
         @click="handleSubmit()"
-      >Create</button>
+      >{{ componentTextButton }}</button>
     </div>
-    <div class="modal__overplay" @click="diaryStore.closeCreateNote()"></div>
+    <div class="modal__overplay" @click="$emit('close', false)"></div>
   </div>
 </template>
 
 <script setup>
 import { ref } from '#build/imports'
-import { $notify } from '~/plugins/useNotify'
 import DiaryApi from '~/api/diary'
+import { $notify } from '~/plugins/useNotify'
 import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()
 
-let noteTitle = ref('')
-let noteText = ref('')
+const props = defineProps({ 
+  title: String, 
+  text: String,
+  noteId: String,
+  componentType: String,
+  componentText: String,
+  componentTextButton: String
+})
+
+const emitClose = defineEmits(['close'])
+
+let noteTitle = ref(props.title)
+let noteText = ref(props.text)
 let noteDate = new Date()
 
 const handleInput = () => { 
@@ -44,6 +52,24 @@ const handleInput = () => {
     noteTitle.value = noteTitle.value.slice(0, 40) 
     $notify('warning', 'Title can be at most 40 characters long') 
   } 
+}
+
+const editNote = () => {
+  let form = ref({
+    data: {
+      title: noteTitle,
+      text: noteText,
+    }
+  })
+  if (noteTitle.value !== '' && noteText.value !== '') {
+    DiaryApi.editNote(form.value, props.noteId)
+    .then((response) => {
+      diaryStore.editNote(props.noteId, response)
+      emitClose('close', false)
+    })
+  } else {
+    $notify('warning', 'All fields must be filled in')
+  }
 }
 
 const createNote = () => {
@@ -62,7 +88,16 @@ const createNote = () => {
     diaryStore.closeCreateNote()
     noteTitle.value = ''
     noteText.value = ''
+    emitClose('close', false)
   })
+}
+
+const handleNote = () => {
+  if (props.componentType === 'edit') {
+    editNote()
+  } else if (props.componentType === 'create') {
+    createNote()
+  }
 }
 
 const handleSubmit = () => { 
@@ -70,6 +105,6 @@ const handleSubmit = () => {
     $notify('warning', 'All fields must be filled in')
     return 
   } 
-  createNote() 
+  handleNote() 
 }
 </script>

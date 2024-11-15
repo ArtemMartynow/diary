@@ -6,7 +6,6 @@
     >
       <Sidebar />
       <slot />
-      <CreateNoteModal />
     </div>
     <NuxtImg 
       src="../public/images/spinner-solid.svg" 

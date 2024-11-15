@@ -29,8 +29,15 @@
       </div>
     </div>
     <button>
-      <NuxtImg @click="addNote()" src="/images/xmark-solid.svg" alt="xmark" />
+      <NuxtImg @click="isCreateNote = true" src="/images/xmark-solid.svg" alt="xmark" />
     </button>
+    <NoteCreatorEditorModal 
+      v-if="isCreateNote === true"
+      componentType="create"
+      componentText="Create new note"
+      componentTextButton="Create"
+      @close="(n) => isCreateNote = n"
+    />
   </div>
 </template>
 
@@ -45,10 +52,7 @@ const diaryStore = useDiaryStore()
 const router = useRouter()
 
 let searchInput = ref('')
-
-const addNote = () => {
-  diaryStore.openCreateNote()
-}
+let isCreateNote = ref(false)
 
 let newNotesList = computed(() => {
   return diaryStore.notes.filter(

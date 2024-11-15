@@ -36,11 +36,14 @@
       @confirmAction="deleteNote(diaryStore.selectedNote.documentId)"
       @cancel="(n) => isDeleteNote = n"
     />
-    <ChangeNoteModal 
+    <NoteCreatorEditorModal 
       v-if="isEditNote === true"
       :title="diaryStore.selectedNote.title"
       :text="diaryStore.selectedNote.text"
       :noteId="diaryStore.selectedNote.documentId"
+      componentType="edit"
+      componentText="Edit new note"
+      componentTextButton="Edit"
       @close="(n) => isEditNote = n"
     />
   </div>
