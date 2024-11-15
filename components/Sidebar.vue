@@ -24,11 +24,7 @@
         <NoteCard 
           v-for="note in newNotesList"
           :key="note.id"
-          :title="note.title"
-          :text="note.text"
-          :data="note.date"
-          :noteId="note.documentId"
-          @click="diaryStore.setSelectedNote(note)"
+          :note="note"
         />
       </div>
     </div>

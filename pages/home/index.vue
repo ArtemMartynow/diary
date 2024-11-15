@@ -7,7 +7,21 @@
     <div v-else class="home-page__content">
       <h2>{{ diaryStore.selectedNote.title }}</h2>
       <p>{{ diaryStore.selectedNote.text }}</p>
-      <span>{{ reverseDate(diaryStore.selectedNote.date) }}</span>
+      <div class="flex justify-end">
+        <div class="home-page__note-control flex justify-between mr-3">
+          <NuxtImg 
+            src="/images/trash-solid.svg" 
+            alt="delete" 
+            @click.stop="isDeleteNote = true"  
+          />
+          <NuxtImg 
+            src="/images/pencil-solid.svg" 
+            alt="delete" 
+            @click.stop="isEditNote = true" 
+          />
+        </div>
+        <span>{{ reverseDate(diaryStore.selectedNote.date) }}</span>
+      </div>
       <NuxtImg 
         class="close-note" 
         src="/images/xmark-solid.svg" 
@@ -15,6 +29,20 @@
         @click="diaryStore.closeSelectedNote()"  
       />
     </div>
+    <ConfirmationModal 
+      v-if="isDeleteNote === true"
+      title="Delete this note?"
+      buttonText="Delete"
+      @confirmAction="deleteNote(diaryStore.selectedNote.documentId)"
+      @cancel="(n) => isDeleteNote = n"
+    />
+    <ChangeNoteModal 
+      v-if="isEditNote === true"
+      :title="diaryStore.selectedNote.title"
+      :text="diaryStore.selectedNote.text"
+      :noteId="diaryStore.selectedNote.documentId"
+      @close="(n) => isEditNote = n"
+    />
   </div>
 </template>
 
@@ -23,8 +51,20 @@ definePageMeta({
   layout: 'diary',
   middleware: 'auth'
 })
+import { ref } from '#build/imports'
+import DiaryApi from '~/api/diary'
 import { reverseDate } from '~/helpers/customFunctions'
 import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()  
+
+let isDeleteNote = ref(false)
+let isEditNote = ref(false)
+
+const deleteNote = (noteId) => {
+  DiaryApi.deleteNote(noteId)
+  .then(() => {
+    diaryStore.deleteNote(noteId)
+  })
+}
 </script>

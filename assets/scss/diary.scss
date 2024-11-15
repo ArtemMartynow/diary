@@ -85,21 +85,6 @@
           color: #b8b8b8;
           border: none;
         }
-        .sidebar__note-control {
-          position: absolute;
-          right: 10px;
-          bottom: 10px;
-          width: 50px;
-          img {
-            width: 23px;
-            padding: 5px;
-            border-radius: 3px;
-            transition: all 0.2s;
-            &:hover {
-              background: #3b3c6b;
-            }
-          }
-        }
         &:hover {
           background: #af74f7;
           cursor: pointer;
@@ -170,13 +155,27 @@
     span {
       position: relative;
       align-self: flex-end;
+      font-size: 20px;
     }
     .close-note {
-      width: 30px;
+      width: 25px;
       position: absolute;
       top: 10px;
       right: 10px;
       cursor: pointer; 
+    }
+    .home-page__note-control {
+      width: 50px;
+      img {
+        width: 28px;
+        padding: 5px;
+        border-radius: 3px;
+        transition: all 0.2s;
+        cursor: pointer;
+        &:hover {
+          background: #5a5cc6;
+        }
+      }
     }
   }
 }
@@ -239,6 +238,13 @@
       span {
         position: relative;
         align-self: flex-end;
+        font-size: 24px;
+      }
+      .home-page__note-control {
+        width: 70px;
+        img {
+          width: 30px;
+        }
       }
     }
   }
@@ -267,6 +273,7 @@
   }
   .home-page_active {
     .home-page__content {
+      padding: 15px;
       h2 {
         font-size: 34px;
       }
@@ -275,6 +282,15 @@
       }
       .close-note {
         width: 20px;
+      }
+      span {
+        font-size: 16px;
+      }
+      .home-page__note-control {
+        width: 50px;
+        img {
+          width: 24px;
+        }
       }
     }
   }

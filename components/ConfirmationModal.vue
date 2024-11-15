@@ -1,7 +1,7 @@
 <template>
   <div class="confirmation-modal">
-    <div class="confirmation-modal__window">
-      <h2 class="text-2xl mt-5">{{ title }}</h2>
+    <div class="confirmation-modal__window text-white">
+      <h2 class="text-2xl mt-5 mb-9">{{ title }}</h2>
       <button 
         @click="confirmAction"
         class="confirmation-modal__delete"
