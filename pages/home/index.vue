@@ -65,6 +65,8 @@ const deleteNote = (noteId) => {
   DiaryApi.deleteNote(noteId)
   .then(() => {
     diaryStore.deleteNote(noteId)
+    diaryStore.closeSelectedNote()
+    isDeleteNote = false
   })
 }
 </script>

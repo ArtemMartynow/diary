@@ -19,7 +19,7 @@
         @click="editNote()"
       >Edit</button>
     </div>
-    <div class="modal__overplay"></div>
+    <div class="modal__overplay" @click="$emit('close', false)"></div>
   </div>
 </template>
 
