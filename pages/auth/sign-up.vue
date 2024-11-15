@@ -29,14 +29,14 @@
             src="/images/eye-regular.svg" 
             alt="show"  
             @click="togglePasswordVisibility"
-            class="absolute right-3 top-3 w-7"
+            class="absolute right-3.5 top-3 w-6 cursor-pointer"
             v-if="passwordFieldType === 'password'"
           />
           <NuxtImg 
             src="/images/eye-slash-regular.svg" 
             alt="hide"  
             @click="togglePasswordVisibility"
-            class="absolute right-3 top-3 w-7"
+            class="absolute right-3 top-3 w-7 cursor-pointer"
             v-else
           />
         </div>

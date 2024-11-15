@@ -1,6 +1,6 @@
 <template>
-  <div class="change-note-modal">
-    <div class="change-note-modal__window">
+  <div class="create-edit-note-modal">
+    <div class="create-edit-note-modal__window">
       <h2 class="text-4xl mt-5 text-center">
         {{ componentText }}
       </h2>
@@ -14,7 +14,7 @@
       <textarea 
         placeholder="Note"
         v-model="noteText"  
-        @keydown.enter="editNote()"        
+        @keydown.enter="handleInput()"        
       ></textarea>
       <button 
         @click="handleSubmit()"
