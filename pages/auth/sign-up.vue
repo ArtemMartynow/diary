@@ -17,12 +17,29 @@
           v-model="form.email"  
           @keydown.enter="signUp(form)"
         >
-        <input
-          type="password" 
-          placeholder="Password"
-          v-model="form.password"  
-          @keydown.enter="signUp(form)"
-        >
+        <div class="relative">
+          <input
+            :type="passwordFieldType"
+            placeholder="Password"
+            v-model="form.password"  
+            @keydown.enter="signUp(form)"
+            class="sign-up-password"
+          >
+          <NuxtImg 
+            src="/images/eye-regular.svg" 
+            alt="show"  
+            @click="togglePasswordVisibility"
+            class="absolute right-3 top-3 w-7"
+            v-if="passwordFieldType === 'password'"
+          />
+          <NuxtImg 
+            src="/images/eye-slash-regular.svg" 
+            alt="hide"  
+            @click="togglePasswordVisibility"
+            class="absolute right-3 top-3 w-7"
+            v-else
+          />
+        </div>
       </div>
       <div class="sign-up__buttons">
         <button @click="signUp(form)">Sign up</button>
@@ -50,6 +67,7 @@ let form = ref({
 	email: "",
   password: ""
 })
+let passwordFieldType = ref('password')
 
 const signUp = (form) => {
   AuthApi.register(form)
@@ -65,5 +83,9 @@ const signUp = (form) => {
       }
     }
   })
+}
+
+function togglePasswordVisibility() {
+  passwordFieldType.value = passwordFieldType.value === 'password' ? 'text' : 'password'
 }
 </script>

@@ -80,6 +80,6 @@ const login = (form) => {
 }
 
 function togglePasswordVisibility() {
-  passwordFieldType.value = passwordFieldType.value === 'password' ? 'text' : 'password';
+  passwordFieldType.value = passwordFieldType.value === 'password' ? 'text' : 'password'
 }
 </script>
