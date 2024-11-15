@@ -11,12 +11,29 @@
           v-model="form.identifier"  
           @keydown.enter="login(form)"
         >
-        <input 
-          type="password" 
-          placeholder="Password"
-          v-model="form.password"  
-          @keydown.enter="login(form)"
-        >
+        <div class="relative">
+          <input 
+            :type="passwordFieldType" 
+            placeholder="Password"
+            v-model="form.password"  
+            @keydown.enter="login(form)"
+            class="login-password"
+          >
+          <NuxtImg 
+            src="/images/eye-regular.svg" 
+            alt="show"  
+            @click="togglePasswordVisibility"
+            class="absolute right-3 top-3 w-7"
+            v-if="passwordFieldType === 'password'"
+          />
+          <NuxtImg 
+            src="/images/eye-slash-regular.svg" 
+            alt="hide"  
+            @click="togglePasswordVisibility"
+            class="absolute right-3 top-3 w-7"
+            v-else
+          />
+        </div>
       </div>
       <div class="login__buttons">
         <button @click="login(form)">Login</button>
@@ -42,6 +59,7 @@ let form = ref({
   identifier: "",
   password: ""
 })
+let passwordFieldType = ref('password')
 
 const login = (form) => {
   AuthApi.login(form)
@@ -59,5 +77,9 @@ const login = (form) => {
       }
     }
   })
+}
+
+function togglePasswordVisibility() {
+  passwordFieldType.value = passwordFieldType.value === 'password' ? 'text' : 'password';
 }
 </script>
