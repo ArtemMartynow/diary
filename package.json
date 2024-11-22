@@ -21,7 +21,7 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@pinia/nuxt": "^0.7.0",
-    "sass": "^1.80.6",
+    "sass": "^1.81.0",
     "sass-loader": "^16.0.3"
   }
 }

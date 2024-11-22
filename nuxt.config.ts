@@ -15,11 +15,22 @@ export default defineNuxtConfig({
     display: 'swap',
   },
   css: ['~/assets/scss/main.scss'],
+  build: { 
+    loaders: { 
+      scss: { 
+        implementation: require('sass'), 
+        options: {
+          api: 'modern', 
+        }, 
+      }, 
+    }, 
+  },
   plugins: [ '~/plugins/useNotify.js' ],
   app: { 
     head: { 
       title: 'Diary', 
       meta: [ { name: 'description', content: 'Diary' } ] 
     } 
-  }
+  },
+  ssr: true,
 })

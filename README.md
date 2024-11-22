@@ -2,6 +2,9 @@
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## API Documentation 
+The API is available at `http://localhost:1337/api/`
+
 ## Setup
 
 Make sure to install dependencies:
