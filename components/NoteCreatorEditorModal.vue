@@ -18,7 +18,21 @@
       ></textarea>
       <button 
         @click="handleSubmit()"
-      >{{ componentTextButton }}</button>
+        :disabled="isLoading"
+      >
+        <span 
+          class="button-text"
+          v-if="isLoading === false"
+        >
+          {{ componentTextButton }}
+        </span>
+        <NuxtImg 
+          src="../public/images/spinner-solid.svg" 
+          alt="loading" 
+          class="animate-spin w-7 mx-auto"  
+          v-else
+        />
+      </button>
     </div>
     <div class="modal__overplay" @click="$emit('close', false)"></div>
   </div>
@@ -46,6 +60,7 @@ const emitClose = defineEmits(['close'])
 let noteTitle = ref(props.title)
 let noteText = ref(props.text)
 let noteDate = new Date()
+let isLoading = ref(false)
 
 const handleInput = () => { 
   if (noteTitle.value.length > 40) { 
@@ -65,6 +80,7 @@ const editNote = () => {
     DiaryApi.editNote(form.value, props.noteId)
     .then((response) => {
       diaryStore.editNote(props.noteId, response)
+      isLoading.value = false
       emitClose('close', false)
     })
   } else {
@@ -88,11 +104,13 @@ const createNote = () => {
     diaryStore.closeCreateNote()
     noteTitle.value = ''
     noteText.value = ''
+    isLoading.value = false
     emitClose('close', false)
   })
 }
 
 const handleNote = () => {
+  isLoading.value = true
   if (props.componentType === 'edit') {
     editNote()
   } else if (props.componentType === 'create') {

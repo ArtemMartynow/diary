@@ -42,7 +42,23 @@
         </div>
       </div>
       <div class="sign-up__buttons">
-        <button @click="signUp(form)">Sign up</button>
+        <button 
+          @click="signUp(form)"
+          :disabled="isLoading"  
+        >
+          <span 
+            class="button-text"
+            v-if="isLoading === false"  
+          >
+            Sign up
+          </span>
+          <NuxtImg 
+            src="../public/images/spinner-solid.svg" 
+            alt="loading" 
+            class="animate-spin w-8 mx-auto"  
+            v-else
+          />
+        </button>
         <span>or</span>
         <NuxtLink to="/auth/login">Login</NuxtLink>
       </div>
@@ -68,13 +84,17 @@ let form = ref({
   password: ""
 })
 let passwordFieldType = ref('password')
+let isLoading = ref(false)
 
 const signUp = (form) => {
+  isLoading.value = true
   AuthApi.register(form)
   .then((response) => {
     router.push('/auth/login')
+    isLoading.value = false
   })
   .catch((error) => {
+    isLoading.value = false
     if (Object.keys(error.data.error.details).length === 0) {
       $notify('error', error.data.error.message)
     } else {
