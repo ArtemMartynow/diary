@@ -1,6 +1,6 @@
 import ApiBase from "./base"
 import { http } from '../composables/useFetch'
-import { $notify } from '~/plugins/useNotify'
+import { $notify } from '~/composables/useNotify'
 import { useDiaryStore } from '../stores/diaryStore'
 
 class DiaryApi {
