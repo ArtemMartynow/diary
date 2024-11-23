@@ -41,7 +41,6 @@
 <script setup>
 import { ref } from '#build/imports'
 import DiaryApi from '~/api/diary'
-import { $notify } from '~/composables/useNotify'
 import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()

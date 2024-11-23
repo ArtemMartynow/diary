@@ -1,6 +1,4 @@
 import ApiBase from "./base"
-import { http } from '../composables/useFetch'
-import { $notify } from '~/composables/useNotify'
 import StorageHelper from '~/helpers/localStorageHelper'
 
 class AuthApi {

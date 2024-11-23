@@ -66,7 +66,6 @@ definePageMeta({
 })
 import AuthApi from '../../api/auth'
 import { ref } from '#build/imports'
-import { $notify } from '~/composables/useNotify'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

@@ -44,7 +44,6 @@
 <script setup>
 import { ref } from '#build/imports'
 import StorageHelper from '~/helpers/localStorageHelper'
-import { $notify } from '~/composables/useNotify'
 import { useRouter } from 'vue-router'
 import { useDiaryStore } from '../stores/diaryStore'
 
