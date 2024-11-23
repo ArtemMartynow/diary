@@ -39,7 +39,6 @@
 </template>
 
 <script setup>
-import { ref } from '#build/imports'
 import DiaryApi from '~/api/diary'
 import { useDiaryStore } from '../stores/diaryStore'
 

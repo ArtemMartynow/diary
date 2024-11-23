@@ -72,7 +72,6 @@ definePageMeta({
 })
 
 import AuthApi from '../../api/auth'
-import { ref } from '#build/imports'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

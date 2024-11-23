@@ -54,7 +54,6 @@ definePageMeta({
   layout: 'diary',
   middleware: 'auth'
 })
-import { ref } from '#build/imports'
 import DiaryApi from '~/api/diary'
 import { reverseDate } from '~/helpers/customFunctions'
 import { useDiaryStore } from '../stores/diaryStore'
