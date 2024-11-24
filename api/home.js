@@ -5,7 +5,6 @@ class HomeApi {
     try {
       let url = ApiBase.baseApiUrl() + 'news'
       let response = await http('get', url, null)
-      console.log(response)
       return response.data
     } catch(error) {
       throw error
@@ -16,7 +15,6 @@ class HomeApi {
     try {
       let url = ApiBase.baseApiUrl() + 'feedbacks'
       let response = await http('get', url, null)
-      console.log(response)
       return response.data
     } catch(error) {
       throw error
