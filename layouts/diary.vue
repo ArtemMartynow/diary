@@ -17,7 +17,6 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
 import DiaryApi from '~/api/diary'
 import { useDiaryStore } from '../stores/diaryStore'
 
