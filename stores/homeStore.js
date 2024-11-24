@@ -8,6 +8,9 @@ export const useHomeStore = defineStore('homeStore', {
   actions: {
     getNews(news) {
       this.news = news
+    },
+    getFeedback(feedback) {
+      this.feedback = feedback
     }
   }
 })

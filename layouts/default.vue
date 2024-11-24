@@ -24,6 +24,10 @@ onMounted(async () => {
     await HomeApi.getNews()
     .then((response) => {
       homeStore.getNews(response)
+    })
+    await HomeApi.getFeedback()
+    .then((response) => {
+      homeStore.getFeedback(response)
       isLoading.value = false
     })
   } catch (error) { 

@@ -21,6 +21,15 @@
       :text="news.text"
     />
   </div>
+  <div class="home__feedback">
+    <h2 class="text-4xl">Feedback</h2>
+    <ContentCard 
+      v-for="feedback in homeStore.feedback"
+      :key="feedback.id"
+      :title="feedback.username"
+      :text="feedback.text"
+    />
+  </div>
 </div>
 </template>
 
