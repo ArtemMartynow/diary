@@ -2,19 +2,19 @@
   <div class="login">
     <div class="login__content">
       <div class="login__title">
-        <h1>Login</h1>
+        <h1>Логін</h1>
       </div>
       <div class="login__inputs">
         <input 
           type="text" 
-          placeholder="Login"
+          placeholder="Логін"
           v-model="form.identifier"  
           @keydown.enter="login(form)"
         >
         <div class="relative">
           <input 
             :type="passwordFieldType" 
-            placeholder="Password"
+            placeholder="Пароль"
             v-model="form.password"  
             @keydown.enter="login(form)"
             class="login-password"
@@ -44,7 +44,7 @@
             class="button-text"
             v-if="isLoading === false"  
           >
-            Login
+            Увійти
           </span>
           <NuxtImg 
             src="../public/images/spinner-solid.svg" 
@@ -54,7 +54,7 @@
           />
         </button>
         <span>or</span>
-        <NuxtLink to="/auth/sign-up">Sign up</NuxtLink>
+        <NuxtLink to="/ua/auth/sign-up">Зареєструватися</NuxtLink>
       </div>
     </div>
   </div>
@@ -80,7 +80,7 @@ const login = (form) => {
   isLoading.value = true
   AuthApi.login(form)
   .then((response) => {
-    router.push('/home')
+    router.push('/ua/home')
     isLoading.value = false
   })
   .catch((error) => {

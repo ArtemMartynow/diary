@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 export const useHomeStore = defineStore('homeStore', {
   state: () => ({
     news: [],
-    feedback: []
+    feedback: [],
+    lang: 'en'
   }),
   actions: {
     getNews(news) {
@@ -11,6 +12,12 @@ export const useHomeStore = defineStore('homeStore', {
     },
     getFeedback(feedback) {
       this.feedback = feedback
+    },
+    changeLangEn() {
+      this.lang = 'en'
+    },
+    changeLangUa() {
+      this.lang = 'ua'
     }
   }
 })

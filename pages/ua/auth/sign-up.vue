@@ -7,7 +7,7 @@
       <div class="sign-up__inputs">
         <input
           type="text" 
-          placeholder="Login"
+          placeholder="Логін"
           v-model="form.username"  
           @keydown.enter="signUp(form)"
         >
@@ -20,7 +20,7 @@
         <div class="relative">
           <input
             :type="passwordFieldType"
-            placeholder="Password"
+            placeholder="Пароль"
             v-model="form.password"  
             @keydown.enter="signUp(form)"
             class="sign-up-password"
@@ -50,7 +50,7 @@
             class="button-text"
             v-if="isLoading === false"  
           >
-            Sign up
+            Зареєструватися
           </span>
           <NuxtImg 
             src="../public/images/spinner-solid.svg" 
@@ -60,7 +60,7 @@
           />
         </button>
         <span>or</span>
-        <NuxtLink to="/auth/login">Login</NuxtLink>
+        <NuxtLink to="/ua/auth/login">Логін</NuxtLink>
       </div>
     </div>
   </div>
@@ -88,7 +88,7 @@ const signUp = (form) => {
   isLoading.value = true
   AuthApi.register(form)
   .then((response) => {
-    router.push('/auth/login')
+    router.push('/ua/auth/login')
     isLoading.value = false
   })
   .catch((error) => {

@@ -76,6 +76,33 @@
   }
 }
 
+.app-language {
+  color: #e2e2e2;
+  width: 80px;
+  height: 40px;
+  background: #3c68ba;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  span {
+    padding: 3px 5px;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: all 0.3s;
+    &:hover {
+      background: #548df6;
+    }
+  }
+  .lang-active {
+    background: #548df6;
+    padding: 3px 5px;
+    border-radius: 7px;
+    margin: 0;
+  }
+}
+
 @media (max-width: 800px) {
   .home {
     h1 {

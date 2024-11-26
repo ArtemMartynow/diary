@@ -8,16 +8,23 @@
       />
       <input 
         type="text" 
-        placeholder="Search by title"
+        :placeholder="homeStore.lang === 'en' ? 'Search by title' : 'Пошук за назвою'"
         v-model="searchInput"  
       >
     </div>
     <div class="sidebar__content">
-      <h2 v-if="diaryStore.notes.length === 0">
+      <h2 v-if="diaryStore.notes.length === 0 && homeStore.lang == 'en'">
         It's empty... for now. <br>
         <span>
           Start writing your 
           first thoughts and ideas!
+        </span>
+      </h2>
+      <h2 v-else-if="diaryStore.notes.length === 0 && homeStore.lang === 'ua'">
+        Він порожній... поки що. <br>
+        <span>
+          Почніть писати свої 
+          перші думки та ідеї!
         </span>
       </h2>
       <div class="sidebar__notes" v-else>
@@ -45,9 +52,12 @@
 import StorageHelper from '~/helpers/localStorageHelper'
 import { useRouter } from 'vue-router'
 import { useDiaryStore } from '../stores/diaryStore'
+import { useHomeStore } from '../stores/homeStore'
 
 const diaryStore = useDiaryStore()
+const homeStore = useHomeStore()
 const router = useRouter()
+const route = useRoute()
 
 let searchInput = ref('')
 let isCreateNote = ref(false)
@@ -61,6 +71,10 @@ let newNotesList = computed(() => {
 const logout = () => {
   $notify('success', 'You log out')
   StorageHelper.remove('token')
-  router.push('/auth/login')
+  if (route.fullPath.slice(0, 3) === '/ua') {
+    router.push('/ua/auth/login')
+  } else {
+    router.push('/en/auth/login')
+  }
 }
 </script>
