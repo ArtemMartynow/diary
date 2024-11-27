@@ -52,6 +52,7 @@
 <script setup>
 definePageMeta({
   layout: 'diary',
+  middleware: 'auth'
 })
 import DiaryApi from '~/api/diary'
 import { reverseDate } from '~/helpers/customFunctions'
