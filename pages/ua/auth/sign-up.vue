@@ -2,7 +2,7 @@
   <div class="sign-up">
     <div class="sign-up__content">
       <div class="sign-up__title">
-        <h1>Sign up</h1>
+        <h1>Зареєструватися</h1>
       </div>
       <div class="sign-up__inputs">
         <input

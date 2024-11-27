@@ -1,5 +1,5 @@
 <template>
-  <div class="diary-layout">
+  <div :class="homeStore.lang === 'en' ? 'diary-layout' : 'diary-layout ua'">
     <div 
       v-if="diaryStore.isLoading === false" 
       class="flex w-full"

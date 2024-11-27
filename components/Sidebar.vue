@@ -41,8 +41,8 @@
     <NoteCreatorEditorModal 
       v-if="isCreateNote === true"
       componentType="create"
-      componentText="Create new note"
-      componentTextButton="Create"
+      :componentText="homeStore.lang === 'en' ? 'Create new note' : 'Створити нову примітку'"
+      :componentTextButton="homeStore.lang === 'en' ? 'Create' : 'Створити'"
       @close="(n) => isCreateNote = n"
     />
   </div>

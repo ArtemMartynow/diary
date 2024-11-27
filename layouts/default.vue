@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex items-center justify-center">
+  <div :class="homeStore.lang === 'en' ? 'h-screen flex items-center justify-center' : 'h-screen flex items-center justify-center ua'">
     <slot
       v-if="isLoading === false" 
     />

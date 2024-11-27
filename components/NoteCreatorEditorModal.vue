@@ -6,13 +6,13 @@
       </h2>
       <input 
         type="text" 
-        placeholder="Note title"
+        :placeholder="homeStore.lang === 'en' ? 'Note title' : 'Назва примітки'"
         v-model="noteTitle"  
         @keydown.enter="editNote()"
         @input="handleInput()"
       > 
       <textarea 
-        placeholder="Note"
+        :placeholder="homeStore.lang === 'en' ? 'Note' : 'Примітка'"
         v-model="noteText"  
         @keydown.enter="handleInput()"        
       ></textarea>
@@ -41,8 +41,10 @@
 <script setup>
 import DiaryApi from '~/api/diary'
 import { useDiaryStore } from '../stores/diaryStore'
-
+import { useHomeStore } from '../stores/homeStore'
+  
 const diaryStore = useDiaryStore()
+const homeStore = useHomeStore()
 
 const props = defineProps({ 
   title: String, 

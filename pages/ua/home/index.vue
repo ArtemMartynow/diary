@@ -31,8 +31,8 @@
     </div>
     <ConfirmationModal 
       v-if="isDeleteNote === true"
-      title="Delete this note?"
-      buttonText="Delete"
+      title="Видалити цю примітку?"
+      buttonText="Видалити"
       @confirmAction="deleteNote(diaryStore.selectedNote.documentId)"
       @cancel="(n) => isDeleteNote = n"
     />

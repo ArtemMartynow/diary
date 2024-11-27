@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   googleFonts: {
     families: { 
       'Epilogue': true, 
+      'Roboto': true
     }, 
     display: 'swap',
   },

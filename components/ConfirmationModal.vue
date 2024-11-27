@@ -9,13 +9,17 @@
       <button 
         @click="$emit('cancel', false)"
         class="confirmation-modal__cancel"  
-      >Cancel</button>
+      >{{ homeStore.lang === 'en' ? 'Cancel' : 'Скасувати' }}</button>
     </div>
     <div class="modal__overplay"></div>
   </div>
 </template>
 
 <script setup>
+import { useHomeStore } from '../stores/homeStore'
+
+const homeStore = useHomeStore()
+
 const props = defineProps({
   title: {
     type: String,
