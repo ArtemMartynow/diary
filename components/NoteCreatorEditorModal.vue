@@ -6,13 +6,13 @@
       </h2>
       <input 
         type="text" 
-        :placeholder="homeStore.lang === 'en' ? 'Note title' : 'Назва примітки'"
+        :placeholder="$t('note_title')"
         v-model="noteTitle"  
         @keydown.enter="editNote()"
         @input="handleInput()"
       > 
       <textarea 
-        :placeholder="homeStore.lang === 'en' ? 'Note' : 'Примітка'"
+        :placeholder="$t('note')"
         v-model="noteText"  
         @keydown.enter="handleInput()"        
       ></textarea>

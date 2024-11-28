@@ -1,23 +1,29 @@
 <template>
-  <div class="login">
-    <div class="login__content">
-      <div class="login__title">
-        <h1>Логін</h1>
+  <div class="sign-up">
+    <div class="sign-up__content">
+      <div class="sign-up__title">
+        <h1>{{ $t('sign_up') }}</h1>
       </div>
-      <div class="login__inputs">
-        <input 
+      <div class="sign-up__inputs">
+        <input
           type="text" 
-          placeholder="Логін"
-          v-model="form.identifier"  
-          @keydown.enter="login(form)"
+          :placeholder="$t('login_placeholder')"
+          v-model="form.username"  
+          @keydown.enter="signUp(form)"
+        >
+        <input
+          type="email" 
+          placeholder="Email"
+          v-model="form.email"  
+          @keydown.enter="signUp(form)"
         >
         <div class="relative">
-          <input 
-            :type="passwordFieldType" 
-            placeholder="Пароль"
+          <input
+            :type="passwordFieldType"
+            :placeholder="$t('password_placeholder')"
             v-model="form.password"  
-            @keydown.enter="login(form)"
-            class="login-password"
+            @keydown.enter="signUp(form)"
+            class="sign-up-password"
           >
           <NuxtImg 
             src="/images/eye-regular.svg" 
@@ -35,16 +41,16 @@
           />
         </div>
       </div>
-      <div class="login__buttons">
+      <div class="sign-up__buttons">
         <button 
-          @click="login(form)"
+          @click="signUp(form)"
           :disabled="isLoading"  
         >
           <span 
             class="button-text"
             v-if="isLoading === false"  
           >
-            Увійти
+            {{ $t('sign_up') }}
           </span>
           <NuxtImg 
             src="../public/images/spinner-solid.svg" 
@@ -54,7 +60,7 @@
           />
         </button>
         <span>or</span>
-        <NuxtLink to="/ua/auth/sign-up">Зареєструватися</NuxtLink>
+        <NuxtLink to="/auth/login">{{ $t('login') }}</NuxtLink>
       </div>
     </div>
   </div>
@@ -64,34 +70,34 @@
 definePageMeta({ 
   middleware: 'auth'
 })
+
 import AuthApi from '../../api/auth'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 let form = ref({
-  identifier: "",
+  username: "",
+	email: "",
   password: ""
 })
 let passwordFieldType = ref('password')
 let isLoading = ref(false)
 
-const login = (form) => {
+const signUp = (form) => {
   isLoading.value = true
-  AuthApi.login(form)
+  AuthApi.register(form)
   .then((response) => {
-    router.push('/ua/home')
+    router.push('/auth/login')
     isLoading.value = false
   })
   .catch((error) => {
     isLoading.value = false
-    if (error?.data?.error) {
-      if (error?.data?.error?.details && Object.keys(error.data.error.details).length === 0) {
-        $notify('error', error.data.error.message)
-      } else {
-        for (let i = 0; i < error.data.error.details.errors.length; i++) {
-          $notify('error', error.data.error.details.errors[i].message)
-        }
+    if (Object.keys(error.data.error.details).length === 0) {
+      $notify('error', error.data.error.message)
+    } else {
+      for (let i = 0; i < error.data.error.details.errors.length; i++) {
+        $notify('error', error.data.error.details.errors[i].message)
       }
     }
   })

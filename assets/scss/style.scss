@@ -27,4 +27,14 @@ p, a {
   .app-language {
     font-family: 'Epilogue';
   }
+  .home {
+    .home__links {
+      width: 470px;
+      a {
+        padding: 0;
+        width: 225px;
+        padding: 5px;
+      }
+    }
+  }
 }

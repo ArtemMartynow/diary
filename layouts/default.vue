@@ -1,21 +1,9 @@
 <template>
-  <div :class="homeStore.lang === 'en' ? 'h-screen flex items-center justify-center' : 'h-screen flex items-center justify-center ua'">
+  <div :class="currentLangClass">
     <slot
       v-if="isLoading === false" 
     />
-    <div
-      class="app-language absolute right-5 bottom-5"
-      v-if="isLoading === false"   
-    >
-      <span 
-        :class="homeStore.lang === 'en' ? 'lang-active' : ''"
-        @click="changeLang(homeStore.lang)"  
-      >en</span>
-      <span 
-        :class="homeStore.lang === 'ua' ? 'lang-active' : ''"
-        @click="changeLang(homeStore.lang)"  
-      >ua</span>
-    </div>
+    <LanguageSwitcher v-if="isLoading === false"  />
     <NuxtImg 
       src="../public/images/spinner-solid.svg" 
       alt="loading" 
@@ -30,24 +18,13 @@ import HomeApi from '~/api/home'
 import { useHomeStore } from '../stores/homeStore'
 
 const homeStore = useHomeStore()
-const route = useRoute()
-const router = useRouter()
+const { locale } = useI18n()
+
+const currentLangClass = computed(() => {
+  return locale.value === 'en' ? 'h-screen flex items-center justify-center' : 'h-screen flex items-center justify-center ua';
+})
 
 let isLoading = ref(true)
-
-const changeLang = (lang) => {
-  let currentUrl = route.fullPath
-  if (currentUrl === '/ua' && lang === 'ua') {
-    homeStore.changeLangEn()
-    router.push('/')
-  } else if (lang === 'ua') {
-    homeStore.changeLangEn()
-    router.push(`/en${currentUrl.slice(3)}`)
-  } else if (lang === 'en') {
-    homeStore.changeLangUa()
-    router.push(`/ua${currentUrl.slice(3)}`)
-  }
-}
 
 onMounted(async () => {
   try { 

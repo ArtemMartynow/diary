@@ -8,26 +8,18 @@
       />
       <input 
         type="text" 
-        :placeholder="homeStore.lang === 'en' ? 'Search by title' : 'Пошук за назвою'"
+        :placeholder="$t('search_placeholder')"
         v-model="searchInput"  
       >
     </div>
     <div class="sidebar__content">
-      <h2 v-if="diaryStore.notes.length === 0 && homeStore.lang == 'en'">
-        It's empty... for now. <br>
+      <h2>
+        {{ $t('notes_are_empty') }} <br>
         <span>
-          Start writing your 
-          first thoughts and ideas!
+          {{ $t('start_writing') }}
         </span>
       </h2>
-      <h2 v-else-if="diaryStore.notes.length === 0 && homeStore.lang === 'ua'">
-        Він порожній... поки що. <br>
-        <span>
-          Почніть писати свої 
-          перші думки та ідеї!
-        </span>
-      </h2>
-      <div class="sidebar__notes" v-else>
+      <div class="sidebar__notes">
         <NoteCard 
           v-for="note in newNotesList"
           :key="note.id"
@@ -41,8 +33,8 @@
     <NoteCreatorEditorModal 
       v-if="isCreateNote === true"
       componentType="create"
-      :componentText="homeStore.lang === 'en' ? 'Create new note' : 'Створити нову примітку'"
-      :componentTextButton="homeStore.lang === 'en' ? 'Create' : 'Створити'"
+      :componentText="$t('create_note')"
+      :componentTextButton="$t('create')"
       @close="(n) => isCreateNote = n"
     />
   </div>
@@ -50,14 +42,10 @@
 
 <script setup>
 import StorageHelper from '~/helpers/localStorageHelper'
-import { useRouter } from 'vue-router'
 import { useDiaryStore } from '../stores/diaryStore'
-import { useHomeStore } from '../stores/homeStore'
 
 const diaryStore = useDiaryStore()
-const homeStore = useHomeStore()
 const router = useRouter()
-const route = useRoute()
 
 let searchInput = ref('')
 let isCreateNote = ref(false)
@@ -71,10 +59,6 @@ let newNotesList = computed(() => {
 const logout = () => {
   $notify('success', 'You log out')
   StorageHelper.remove('token')
-  if (route.fullPath.slice(0, 3) === '/ua') {
-    router.push('/ua/auth/login')
-  } else {
-    router.push('/en/auth/login')
-  }
+  router.push('/auth/login')
 }
 </script>

@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
+    '@nuxtjs/i18n',
   ],
   googleFonts: {
     families: { 
@@ -24,4 +25,7 @@ export default defineNuxtConfig({
     } 
   },
   ssr: true,
+  i18n: {
+    vueI18n: './i18n.config.ts'
+  }
 })

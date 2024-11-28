@@ -4,7 +4,6 @@ export const useHomeStore = defineStore('homeStore', {
   state: () => ({
     news: [],
     feedback: [],
-    lang: 'en'
   }),
   actions: {
     getNews(news) {
@@ -13,11 +12,5 @@ export const useHomeStore = defineStore('homeStore', {
     getFeedback(feedback) {
       this.feedback = feedback
     },
-    changeLangEn() {
-      this.lang = 'en'
-    },
-    changeLangUa() {
-      this.lang = 'ua'
-    }
   }
 })
