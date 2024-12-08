@@ -3,7 +3,7 @@
     <h1 v-if="Object.keys(diaryStore.selectedNote).length === 0">
       {{ $t('note_not_selected') }}
     </h1>
-    <div v-else class="home-page__content">
+    <div v-else class="home-page__content flex flex-col justify-between h-full w-full text-left relative">
       <h2>{{ diaryStore.selectedNote.title }}</h2>
       <p>{{ diaryStore.selectedNote.text }}</p>
       <div class="flex justify-end">

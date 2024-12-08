@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-up">
+  <div class="sign-up h-screen flex flex-col justify-center items-center text-center">
     <div class="sign-up__content">
       <div class="sign-up__title">
         <h1>{{ $t('sign_up') }}</h1>
@@ -48,7 +48,7 @@
         >
           <span 
             class="button-text"
-            v-if="isLoading === false"  
+            v-if="!isLoading"  
           >
             {{ $t('sign_up') }}
           </span>

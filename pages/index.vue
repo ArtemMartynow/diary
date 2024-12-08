@@ -1,13 +1,13 @@
 <template>
-<div class="home">
+<div class="home h-screen w-full text-center">
   <h1>{{ $t('welcome') }}</h1>
   <p>{{ $t('welcome_description') }}</p>
-  <div class="home__links">
+  <div class="home__links flex justify-between">
     <NuxtLink to="/auth/login">{{ $t('login') }}</NuxtLink>
     <NuxtLink to="/auth/sign-up">{{ $t('sign_up') }}</NuxtLink>
   </div>
   <div class="home__news">
-    <h2 class="text-4xl">{{ $t('news') }}</h2>
+    <h2 class="text-4xl mb-2">{{ $t('news') }}</h2>
     <ContentCard 
       v-for="news in homeStore.news"
       :key="news.id"
@@ -16,7 +16,7 @@
     />
   </div>
   <div class="home__feedback">
-    <h2 class="text-4xl">{{ $t('feedback') }}</h2>
+    <h2 class="text-4xl mb-2">{{ $t('feedback') }}</h2>
     <ContentCard 
       v-for="feedback in homeStore.feedback"
       :key="feedback.id"

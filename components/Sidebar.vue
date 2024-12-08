@@ -1,6 +1,6 @@
 <template>
-  <div :class="Object.keys(diaryStore.selectedNote).length === 0 ? 'sidebar pb-24' : 'sidebar_active pb-24'">
-    <div class="sidebar-header">
+  <div :class="Object.keys(diaryStore.selectedNote).length === 0 ? 'sidebar pb-24 text-center flex flex-col justify-between h-screen relative' : 'sidebar_active pb-24 text-center flex flex-col justify-between h-screen relative'">
+    <div class="sidebar-header flex justify-between items-center shrink-0">
       <NuxtImg 
         src="../public/images/right-from-bracket-solid.svg" 
         alt="logout"  
@@ -13,7 +13,7 @@
       >
     </div>
     <div class="sidebar__content">
-      <h2>
+      <h2 v-if="diaryStore.notes.length === 0">
         {{ $t('notes_are_empty') }} <br>
         <span>
           {{ $t('start_writing') }}

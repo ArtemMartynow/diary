@@ -6,7 +6,6 @@ export const useDiaryStore = defineStore('diaryStore', {
     notes: [],
     selectedNote: {},
     isCreateNote: false,
-    isLoading: true
   }),
   actions: {
     setUser(user) {
@@ -41,8 +40,5 @@ export const useDiaryStore = defineStore('diaryStore', {
         return note
       })
     },
-    setLoading(status) {
-      this.isLoading = status
-    }
   }
 })

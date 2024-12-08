@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar__note" @click="diaryStore.setSelectedNote(props.note)">
+  <div class="sidebar__note text-left releative" @click="diaryStore.setSelectedNote(props.note)">
     <span class="sidebar__note_title">{{ shortenText(props.note.title, 22) }}</span>
     <p>{{ shortenText(props.note.text, 30) }}</p>
     <span class="sidebar__note_date">{{ reverseDate(props.note.date) }}</span>

@@ -1,42 +1,45 @@
 <template>
   <div :class="currentLangClass">
+    <NuxtImg 
+      src="../public/images/spinner-solid.svg" 
+      alt="loading" 
+      class="animate-spin w-20 mx-auto"
+      v-if="isLoading" 
+    />
     <div 
-      v-if="diaryStore.isLoading === false" 
+      v-else
       class="flex w-full"
     >
       <Sidebar />
       <slot />
       <LanguageSwitcher />
     </div>
-    <NuxtImg 
-      src="../public/images/spinner-solid.svg" 
-      alt="loading" 
-      class="animate-spin w-20 mx-auto"
-      v-else
-    />
   </div>
 </template>
 
 <script setup>
 import DiaryApi from '~/api/diary'
-import { useDiaryStore } from '../stores/diaryStore'
-
-const diaryStore = useDiaryStore()
 
 const { locale } = useI18n()
 
+const isLoading = ref(process.client)
 const currentLangClass = computed(() => {
-  return locale.value === 'en' ? 'h-screen flex items-center justify-center' : 'h-screen flex items-center justify-center ua';
+  let langClass = 'h-screen flex items-center justify-center'
+  return locale.value === 'en' ? langClass : `${langClass} ua`
 })
 
-onMounted(async () => {
-  try { 
-    await DiaryApi.getProfile() 
-    await DiaryApi.getNotes()
-  } catch (error) { 
-    console.error('Error loading profile or notes:', error) 
-  } finally { 
-    diaryStore.setLoading(false)
-  }
-})
+if (process.client) {
+  (async () => {
+    try {
+      Promise.all([
+        await DiaryApi.getProfile(), 
+        await DiaryApi.getNotes()
+      ])
+    } catch (error) { 
+      console.error('Error loading profile or notes:', error) 
+    } finally {
+      isLoading.value = false
+    }
+  })()
+}
 </script>

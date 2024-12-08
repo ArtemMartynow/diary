@@ -7,20 +7,10 @@
   width: 400px; 
   min-width: 400px;
   border-right: 2px solid #a45de2; 
-  text-align: center; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: space-between; 
-  height: 100vh;
-  position: relative;
   .sidebar-header {
     color: #e2e2e2;
     padding: 20px 20px;
     border-bottom: 1px solid #a45de2;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     img {
       width: 50px;
       height: 50px;
@@ -66,13 +56,11 @@
     .sidebar__notes {
       .sidebar__note {
         color: #e2e2e2;
-        text-align: left;
         padding: 10px;
         border: 1px solid #a45de2;
         margin: 10px;
         border-radius: 10px;
         transition: all 0.2s;
-        position: relative;
         .sidebar__note_title {
           font-size: 20px;
           border: none;
@@ -124,16 +112,9 @@
     color: #e2e2e2;
   }
   .home-page__content {
-    display: flex; 
-    flex-direction: column; 
-    justify-content: space-between;
-    height: 100%;
-    width: 100%;
     background: #3b3c6b;
     border-radius: 20px;
-    text-align: left;
     padding: 30px;
-    position: relative;
     color: #e2e2e2;
     overflow-y: auto;
     &::-webkit-scrollbar {

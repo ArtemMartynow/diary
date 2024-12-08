@@ -1,6 +1,6 @@
 <template>
-  <div class="create-edit-note-modal">
-    <div class="create-edit-note-modal__window">
+  <div class="create-edit-note-modal fixed top-0 left-0 w-full h-full flex items-center justify-center">
+    <div class="create-edit-note-modal__window relative text-center">
       <h2 class="text-4xl mt-5 text-center">
         {{ componentText }}
       </h2>
@@ -22,7 +22,7 @@
       >
         <span 
           class="button-text"
-          v-if="isLoading === false"
+          v-if="!isLoading"
         >
           {{ componentTextButton }}
         </span>
