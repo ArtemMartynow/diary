@@ -27,20 +27,13 @@ const currentLangClass = computed(() => {
   return locale.value === 'en' ? langClass : `${langClass} ua`
 })
 
-if (process.client) {
-  (async () => {
-    try {
-      const [newsResponse, feedbackResponse] = await Promise.all([
-        HomeApi.getNews(),
-        HomeApi.getFeedback()
-      ])
-      homeStore.getNews(newsResponse)
-      homeStore.getFeedback(feedbackResponse)
-    } catch (error) {
-      console.error(error)
-    } finally {
-      isLoading.value = false
-    }
-  })()
-}
+const { data } = useAsyncData(async () => { 
+  const [newsResponse, feedbackResponse] = await Promise.all([ 
+    HomeApi.getNews(), 
+    HomeApi.getFeedback() 
+  ]) 
+  homeStore.getNews(newsResponse) 
+  homeStore.getFeedback(feedbackResponse) 
+  isLoading.value = false 
+})
 </script>

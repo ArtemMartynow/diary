@@ -41,10 +41,8 @@
 <script setup>
 import DiaryApi from '~/api/diary'
 import { useDiaryStore } from '../stores/diaryStore'
-import { useHomeStore } from '../stores/homeStore'
   
 const diaryStore = useDiaryStore()
-const homeStore = useHomeStore()
 
 const props = defineProps({ 
   title: String, 
@@ -71,15 +69,12 @@ const handleInput = () => {
 
 const editNote = () => {
   let form = ref({
-    data: {
-      title: noteTitle,
-      text: noteText,
-    }
+    title: noteTitle,
+    text: noteText,
   })
   if (noteTitle.value !== '' && noteText.value !== '') {
     DiaryApi.editNote(form.value, props.noteId)
-    .then((response) => {
-      diaryStore.editNote(props.noteId, response)
+    .then(() => {
       isLoading.value = false
       emitClose('close', false)
     })
@@ -91,16 +86,14 @@ const editNote = () => {
 const createNote = () => {
   let userId = ref(diaryStore.user?.id)
   let form = ref({
-    data: {
-      title: noteTitle,
-      text: noteText,
-      userId: userId,
-      date: noteDate
-    }
+    title: noteTitle,
+    text: noteText,
+    userId: userId,
+    date: noteDate
   })
   DiaryApi.addNote(form.value)
   .then((response) => {
-    diaryStore.addNewNote(response)
+    console.log(response);
     diaryStore.closeCreateNote()
     noteTitle.value = ''
     noteText.value = ''

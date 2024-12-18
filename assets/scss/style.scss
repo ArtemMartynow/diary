@@ -38,3 +38,48 @@ p, a {
     }
   }
 }
+
+.select {
+  position: relative;
+  width: 150px;
+  cursor: pointer;
+  .option__wrapper {
+    position: absolute;
+    background: #a45de2;
+    border-radius: 10px;
+    z-index: 2;
+    width: 100%;
+  }
+  .select__option {
+  border: 2px solid #a45de2;
+  border-radius: 8px;
+  background: #a45de2;
+  color: #ffffff;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  padding: 7px 10px 6px 7px;
+  width: 150px;
+  position: relative;
+  text-align: center;
+  transition: all 0.2s;
+  &:hover {
+    background: #6838a2;
+  }
+  }
+  .option {
+    padding: 8px;
+    border: 1px solid #6838a2;
+    transition: all 0.2s;
+    &:hover {
+      background: #6838a2;
+    }
+    &:first-of-type {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    &:last-of-type {
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+  }
+}

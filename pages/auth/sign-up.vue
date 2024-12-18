@@ -60,7 +60,7 @@
           />
         </button>
         <span>or</span>
-        <NuxtLink to="/auth/login">{{ $t('login') }}</NuxtLink>
+        <NuxtLink :to="localePath('/auth/login')">{{ $t('login') }}</NuxtLink>
       </div>
     </div>
   </div>
@@ -75,11 +75,13 @@ import AuthApi from '../../api/auth'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const localePath = useLocalePath()
 
 let form = ref({
   username: "",
 	email: "",
-  password: ""
+  password: "",
+  notes: []
 })
 let passwordFieldType = ref('password')
 let isLoading = ref(false)

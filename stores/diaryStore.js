@@ -30,11 +30,11 @@ export const useDiaryStore = defineStore('diaryStore', {
       this.notes.push(note)
     },
     deleteNote(noteId) {
-      this.notes = this.notes.filter((note) => note.documentId !== noteId)
+      this.notes = this.notes.filter((note) => note.id !== noteId)
     },
     editNote(noteId, changedNote) {
       this.notes = this.notes.map((note) => {
-        if (note.documentId === noteId) {
+        if (note.id === noteId) {
           return { ...note, ...changedNote }
         }
         return note

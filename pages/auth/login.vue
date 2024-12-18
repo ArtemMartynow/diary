@@ -8,7 +8,7 @@
         <input 
           type="text" 
           :placeholder="$t('login_placeholder')"
-          v-model="form.identifier"  
+          v-model="form.username"  
           @keydown.enter="login(form)"
         >
         <div class="relative">
@@ -54,7 +54,7 @@
           />
         </button>
         <span>{{ $t('or') }}</span>
-        <NuxtLink to="/auth/sign-up">{{ $t('sign_up') }}</NuxtLink>
+        <NuxtLink :to="localePath('/auth/sign-up')">{{ $t('sign_up') }}</NuxtLink>
       </div>
     </div>
   </div>
@@ -68,10 +68,12 @@ import AuthApi from '../../api/auth'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const localePath = useLocalePath()
 
 let form = ref({
-  identifier: "",
-  password: ""
+  username: "",
+  password: "",
+  notes: []
 })
 let passwordFieldType = ref('password')
 let isLoading = ref(false)

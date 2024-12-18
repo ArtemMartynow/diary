@@ -1,10 +1,12 @@
 import ApiBase from "./base"
 import { useDiaryStore } from '../stores/diaryStore'
+import StorageHelper from "~/helpers/localStorageHelper"
 
 class DiaryApi {
+
   static async getProfile () {
     try {
-      let url = ApiBase.baseApiUrl() + 'users/me'
+      let url = ApiBase.baseApiUrl() + `users/${StorageHelper.get('token')}`
       let response = await http('get', url, null, ApiBase.authHeaders())
       const diaryStore = useDiaryStore() 
 
@@ -18,10 +20,10 @@ class DiaryApi {
   static async getNotes () {
     try {
       const diaryStore = useDiaryStore() 
-      let url = ApiBase.baseApiUrl() + `notes?filters[userId][$eq]=${diaryStore.user.id}`
+      let url = ApiBase.baseApiUrl() + `notes?userId=${StorageHelper.get('token')}`
       let response = await http('get', url, null, ApiBase.authHeaders())
 
-      diaryStore.setNotes(response.data)
+      diaryStore.setNotes(response)
       return response.data
     } catch(error) {
       throw error
@@ -32,7 +34,9 @@ class DiaryApi {
     try {
       let url = ApiBase.baseApiUrl() + 'notes'
       let response = await http('post', url, form, ApiBase.authHeaders())
+      const diaryStore = useDiaryStore() 
 
+      diaryStore.addNewNote(response)
       $notify('success', 'You have created a new note')
       return response.data
     } catch(error) {
@@ -55,10 +59,11 @@ class DiaryApi {
   static async editNote (form, noteId) {
     try {
       let url = ApiBase.baseApiUrl() + `notes/${noteId}`
-      let response = await http('put', url, form, ApiBase.authHeaders())
+      let response = await http('patch', url, form, ApiBase.authHeaders())
       const diaryStore = useDiaryStore() 
 
-      diaryStore.setSelectedNote(response.data)
+      diaryStore.setSelectedNote(response)
+      diaryStore.editNote(noteId, response)
       $notify('success', 'You changed the note')
       return response.data
     } catch(error) {

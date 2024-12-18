@@ -32,7 +32,7 @@ if (process.client) {
   (async () => {
     try {
       Promise.all([
-        await DiaryApi.getProfile(), 
+        await DiaryApi.getProfile(),
         await DiaryApi.getNotes()
       ])
     } catch (error) { 

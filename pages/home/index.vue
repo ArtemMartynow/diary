@@ -11,12 +11,12 @@
           <NuxtImg 
             src="/images/trash-solid.svg" 
             alt="delete" 
-            @click.stop="isDeleteNote = true"  
+            @click.stop="showDeleteModal()"  
           />
           <NuxtImg 
             src="/images/pencil-solid.svg" 
             alt="delete" 
-            @click.stop="isEditNote = true" 
+            @click.stop="showEditModal()" 
           />
         </div>
         <span>{{ reverseDate(diaryStore.selectedNote.date) }}</span>
@@ -32,18 +32,18 @@
       v-if="isDeleteNote === true"
       :title="$t('delete_title')"
       :buttonText="$t('delete')"
-      @confirmAction="deleteNote(diaryStore.selectedNote.documentId)"
-      @cancel="(n) => isDeleteNote = n"
+      @confirmAction="deleteNote(diaryStore.selectedNote.id)"
+      @cancel="closeDeleteModal()"
     />
     <NoteCreatorEditorModal 
       v-if="isEditNote === true"
       :title="diaryStore.selectedNote.title"
       :text="diaryStore.selectedNote.text"
-      :noteId="diaryStore.selectedNote.documentId"
+      :noteId="diaryStore.selectedNote.id"
       componentType="edit"
       :componentText="$t('edit_note')"
       :componentTextButton="$t('edit')"
-      @close="(n) => isEditNote = n"
+      @close="closeEditModal()"
     />
   </div>
 </template>
@@ -62,12 +62,31 @@ const diaryStore = useDiaryStore()
 let isDeleteNote = ref(false)
 let isEditNote = ref(false)
 
+const showDeleteModal = () => { 
+  isDeleteNote.value = true 
+} 
+const closeDeleteModal = () => { 
+  isDeleteNote.value = false 
+} 
+const showEditModal = () => { 
+  isEditNote.value = true 
+} 
+const closeEditModal = () => { 
+  isEditNote.value = false 
+}
+
+const closeNote = () => { 
+  diaryStore.closeSelectedNote() 
+  isDeleteNote.value = false 
+  isEditNote.value = false 
+}
+
 const deleteNote = (noteId) => {
   DiaryApi.deleteNote(noteId)
   .then(() => {
+    console.log(noteId);
     diaryStore.deleteNote(noteId)
-    diaryStore.closeSelectedNote()
-    isDeleteNote = false
+    closeNote()
   })
 }
 </script>
