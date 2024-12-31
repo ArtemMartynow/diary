@@ -8,7 +8,6 @@
 
 <script setup>
 import { reverseDate, shortenText } from '~/helpers/customFunctions'
-import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()
 

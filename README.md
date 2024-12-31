@@ -3,7 +3,15 @@
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## API Documentation 
-The API is available at `http://localhost:1337/api/`
+The API is available at `http://localhost:3001/`
+
+## Test JSON Server 
+A test JSON server is available for development purposes at `http://localhost:3001/`.
+
+```bash
+# npx
+npx json-server -w db.json -p 3001
+```
 
 ## Setup
 

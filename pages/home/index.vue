@@ -55,7 +55,6 @@ definePageMeta({
 })
 import DiaryApi from '~/api/diary'
 import { reverseDate } from '~/helpers/customFunctions'
-import { useDiaryStore } from '../stores/diaryStore'
 
 const diaryStore = useDiaryStore()  
 

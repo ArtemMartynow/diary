@@ -1,12 +1,12 @@
 import ApiBase from "./base"
 import { useDiaryStore } from '../stores/diaryStore'
-import StorageHelper from "~/helpers/localStorageHelper"
+import CookiesHelper from "~/helpers/CookiesHelper"
 
 class DiaryApi {
 
   static async getProfile () {
     try {
-      let url = ApiBase.baseApiUrl() + `users/${StorageHelper.get('token')}`
+      let url = ApiBase.baseApiUrl() + `users/${CookiesHelper.get('token')}`
       let response = await http('get', url, null, ApiBase.authHeaders())
       const diaryStore = useDiaryStore() 
 
@@ -20,7 +20,7 @@ class DiaryApi {
   static async getNotes () {
     try {
       const diaryStore = useDiaryStore() 
-      let url = ApiBase.baseApiUrl() + `notes?userId=${StorageHelper.get('token')}`
+      let url = ApiBase.baseApiUrl() + `notes?userId=${CookiesHelper.get('token')}`
       let response = await http('get', url, null, ApiBase.authHeaders())
 
       diaryStore.setNotes(response)

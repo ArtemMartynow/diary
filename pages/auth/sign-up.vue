@@ -53,7 +53,7 @@
             {{ $t('sign_up') }}
           </span>
           <NuxtImg 
-            src="../public/images/spinner-solid.svg" 
+            src="/images/spinner-solid.svg" 
             alt="loading" 
             class="animate-spin w-8 mx-auto"  
             v-else

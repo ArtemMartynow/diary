@@ -27,7 +27,7 @@
           {{ componentTextButton }}
         </span>
         <NuxtImg 
-          src="../public/images/spinner-solid.svg" 
+          src="/images/spinner-solid.svg" 
           alt="loading" 
           class="animate-spin w-7 mx-auto"  
           v-else
@@ -40,7 +40,6 @@
 
 <script setup>
 import DiaryApi from '~/api/diary'
-import { useDiaryStore } from '../stores/diaryStore'
   
 const diaryStore = useDiaryStore()
 

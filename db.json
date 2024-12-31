@@ -41,109 +41,103 @@
       "text": "edfq",
       "userId": "db46",
       "date": "2024-12-18T08:21:56.031Z"
+    },
+    {
+      "id": "c73b",
+      "title": "a",
+      "text": "a",
+      "date": "2024-12-30T03:32:30.563Z"
     }
   ],
-  "news": {
-    "data": [
-      {
-        "id": 1,
-        "documentId": "jvhywmr47qvq6o08vnvpb3nf",
-        "title": "Self-development trends",
-        "text": "Discover the latest trends in self-development and how journaling can help you become the best version of yourself.",
-        "createdAt": "2024-11-23T15:30:45.957Z",
-        "updatedAt": "2024-11-23T15:30:45.957Z",
-        "publishedAt": "2024-11-23T15:30:45.952Z",
-        "author": "Alex",
-        "tags": [
-          "#SelfDevelopment",
-          "#LifestyleTrends",
-          "#MentalHealt"
-        ]
-      },
-      {
-        "id": 2,
-        "documentId": "ld6hw7ytv0sbwofh278ci35d",
-        "title": "Time Management Tips",
-        "text": "Learn how keeping a diary helps you manage your time more effectively and achieve your goals.",
-        "createdAt": "2024-11-23T15:31:56.351Z",
-        "updatedAt": "2024-11-23T15:31:56.351Z",
-        "publishedAt": "2024-11-23T15:31:56.348Z",
-        "author": "Linda",
-        "tags": [
-          "#TimeManagement",
-          "#DiaryKeeping",
-          "#SelfImprovement"
-        ]
-      },
-      {
-        "id": 3,
-        "documentId": "q61cczppzhxss0n9i3bxhcrs",
-        "title": "Launching the application",
-        "text": "We are pleased to announce the launch of our new 'Diary' app! Now you can record your thoughts, goals and events of each day in a convenient and intuitive interface.",
-        "createdAt": "2024-11-23T15:32:45.433Z",
-        "updatedAt": "2024-11-23T15:32:45.433Z",
-        "publishedAt": "2024-11-23T15:32:45.431Z",
-        "author": "Kara",
-        "tags": [
-          "#AppLaunch",
-          "#DiaryApp",
-          "#NewApp"
-        ]
-      },
-      {
-        "id": 4,
-        "documentId": "obdc8r1tzzg7fxx8qhncgecd",
-        "title": "Contests and promotions",
-        "text": "Take part in our contest for the best diary of the month and win valuable prizes! More details on our social media page.",
-        "createdAt": "2024-11-23T15:33:37.690Z",
-        "updatedAt": "2024-11-23T15:33:37.690Z",
-        "publishedAt": "2024-11-23T15:33:37.688Z",
-        "author": "Jonh",
-        "tags": [
-          "#DiaryContest",
-          "#SocialMediaContest",
-          "#BestDiary"
-        ]
-      }
-    ]
-  },
-  "feedbacks": {
-    "data": [
-      {
-        "id": 1,
-        "documentId": "stycpzjar4y1qcralsicfb8h",
-        "username": "Bob",
-        "text": "This diary app has helped me organize my thoughts and save important moments. It is very convenient to use every day.",
-        "createdAt": "2024-11-23T15:43:09.949Z",
-        "updatedAt": "2024-11-23T15:43:09.949Z",
-        "publishedAt": "2024-11-23T15:43:09.942Z"
-      },
-      {
-        "id": 2,
-        "documentId": "mcpjmeennonctvjgagl3hhuc",
-        "username": "Linda",
-        "text": "Writing in a diary has become a real therapy for me. I can express my feelings and analyze day by day.",
-        "createdAt": "2024-11-23T15:43:49.936Z",
-        "updatedAt": "2024-11-23T15:43:49.936Z",
-        "publishedAt": "2024-11-23T15:43:49.931Z"
-      },
-      {
-        "id": 3,
-        "documentId": "zb4ttnrwreihj6z995eqkwzl",
-        "username": "Alex",
-        "text": "The app always works smoothly and I love the daily entry reminders feature.",
-        "createdAt": "2024-11-23T15:44:17.062Z",
-        "updatedAt": "2024-11-23T15:44:17.062Z",
-        "publishedAt": "2024-11-23T15:44:17.060Z"
-      }
-    ],
-    "meta": {
-      "pagination": {
-        "page": 1,
-        "pageSize": 25,
-        "pageCount": 1,
-        "total": 3
-      }
+  "news": [
+    {
+      "id": "1",
+      "documentId": "jvhywmr47qvq6o08vnvpb3nf",
+      "title": "Self-development trends",
+      "text": "Discover the latest trends in self-development and how journaling can help you become the best version of yourself.",
+      "createdAt": "2024-11-23T15:30:45.957Z",
+      "updatedAt": "2024-11-23T15:30:45.957Z",
+      "publishedAt": "2024-11-23T15:30:45.952Z",
+      "author": "Alex",
+      "tags": [
+        "SelfDevelopment",
+        "LifestyleTrends",
+        "MentalHealt"
+      ]
+    },
+    {
+      "id": "2",
+      "documentId": "ld6hw7ytv0sbwofh278ci35d",
+      "title": "Time Management Tips",
+      "text": "Learn how keeping a diary helps you manage your time more effectively and achieve your goals.",
+      "createdAt": "2024-11-23T15:31:56.351Z",
+      "updatedAt": "2024-11-23T15:31:56.351Z",
+      "publishedAt": "2024-11-23T15:31:56.348Z",
+      "author": "Linda",
+      "tags": [
+        "TimeManagement",
+        "DiaryKeeping",
+        "SelfImprovement"
+      ]
+    },
+    {
+      "id": "3",
+      "documentId": "q61cczppzhxss0n9i3bxhcrs",
+      "title": "Launching the application",
+      "text": "We are pleased to announce the launch of our new 'Diary' app! Now you can record your thoughts, goals and events of each day in a convenient and intuitive interface.",
+      "createdAt": "2024-11-23T15:32:45.433Z",
+      "updatedAt": "2024-11-23T15:32:45.433Z",
+      "publishedAt": "2024-11-23T15:32:45.431Z",
+      "author": "Kara",
+      "tags": [
+        "AppLaunch",
+        "DiaryApp",
+        "NewApp"
+      ]
+    },
+    {
+      "id": "4",
+      "documentId": "obdc8r1tzzg7fxx8qhncgecd",
+      "title": "Contests and promotions",
+      "text": "Take part in our contest for the best diary of the month and win valuable prizes! More details on our social media page.",
+      "createdAt": "2024-11-23T15:33:37.690Z",
+      "updatedAt": "2024-11-23T15:33:37.690Z",
+      "publishedAt": "2024-11-23T15:33:37.688Z",
+      "author": "Jonh",
+      "tags": [
+        "DiaryContest",
+        "SocialMediaContest",
+        "BestDiary"
+      ]
     }
-  }
+  ],
+  "feedbacks": [
+    {
+      "id": "1",
+      "documentId": "stycpzjar4y1qcralsicfb8h",
+      "username": "Bob",
+      "text": "This diary app has helped me organize my thoughts and save important moments. It is very convenient to use every day.",
+      "createdAt": "2024-11-23T15:43:09.949Z",
+      "updatedAt": "2024-11-23T15:43:09.949Z",
+      "publishedAt": "2024-11-23T15:43:09.942Z"
+    },
+    {
+      "id": "2",
+      "documentId": "mcpjmeennonctvjgagl3hhuc",
+      "username": "Linda",
+      "text": "Writing in a diary has become a real therapy for me. I can express my feelings and analyze day by day.",
+      "createdAt": "2024-11-23T15:43:49.936Z",
+      "updatedAt": "2024-11-23T15:43:49.936Z",
+      "publishedAt": "2024-11-23T15:43:49.931Z"
+    },
+    {
+      "id": "3",
+      "documentId": "zb4ttnrwreihj6z995eqkwzl",
+      "username": "Alex",
+      "text": "The app always works smoothly and I love the daily entry reminders feature.",
+      "createdAt": "2024-11-23T15:44:17.062Z",
+      "updatedAt": "2024-11-23T15:44:17.062Z",
+      "publishedAt": "2024-11-23T15:44:17.060Z"
+    }
+  ]
 }

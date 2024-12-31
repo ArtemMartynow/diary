@@ -1,11 +1,11 @@
 import ApiBase from "./base"
 
 class HomeApi {
-  static async getNews () {
+  static async getNews (query) {
     try {
       let url = ApiBase.baseApiUrl() + 'news'
-      let response = await http('get', url, null)
-      return response.data
+      let response = await http('get', url, query)
+      return response
     } catch(error) {
       throw error
     }
@@ -15,7 +15,7 @@ class HomeApi {
     try {
       let url = ApiBase.baseApiUrl() + 'feedbacks'
       let response = await http('get', url, null)
-      return response.data
+      return response
     } catch(error) {
       throw error
     }

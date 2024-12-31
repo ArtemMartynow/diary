@@ -1,15 +1,21 @@
-import StorageHelper from '~/helpers/localStorageHelper' 
+export default defineNuxtRouteMiddleware((to) => {
+  const token = useCookie('token').value
 
-export default defineNuxtRouteMiddleware((to, from) => {
-  if (process.server) return
-
-  let token = StorageHelper.get('token')
-
-  if (!token && to.path === '/home') {
-    return navigateTo('auth/login')
+  if (!token) {
+    if (['/', '/auth/login', '/auth/sign-up'].includes(to.path)) {
+      return
+    }
+    if (to.path !== '/auth/login') {
+      return navigateTo('/auth/login')
+    }
   }
 
-  if (token && to.path !== '/home') {
-    return navigateTo('/home')
+  if (token) {
+    if (['/', '/home'].includes(to.path)) {
+      return
+    }
+    if (to.path !== '/') {
+      return navigateTo('/home')
+    }
   }
 })

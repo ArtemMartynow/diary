@@ -1,5 +1,5 @@
 import ApiBase from "./base"
-import StorageHelper from '~/helpers/localStorageHelper'
+import CookiesHelper from '~/helpers/CookiesHelper'
 import { useDiaryStore } from '../stores/diaryStore'
 
 class AuthApi {
@@ -22,13 +22,12 @@ class AuthApi {
   
       let url = ApiBase.baseApiUrl() + `users?username=${form.username}&password=${form.password}`
       let response = await http('get', url, form)
-      console.log(response);
       
       if (response.length != 1) { 
         throw new Error('Invalid username or password')  
       } 
   
-      StorageHelper.set('token', response[0].id)
+      CookiesHelper.set('token', response[0].id)
       $notify('success', 'You have been successfully signed in')
       const diaryStore = useDiaryStore()
       diaryStore.setUser(response[0])

@@ -12,7 +12,7 @@
           v-for="tag in props.tags" 
           :key="tag"
           class="ml-2 p-3 bg-purple-500 rounded-full"  
-        >{{ tag }}</span>
+        >{{ '#' + tag }}</span>
       </div>
     </div>
   </div>

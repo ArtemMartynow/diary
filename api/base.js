@@ -1,4 +1,4 @@
-import StorageHelper from '~/helpers/localStorageHelper'
+import CookiesHelper from '~/helpers/CookiesHelper'
 
 class ApiBase {
   static baseApiUrl () {
@@ -7,8 +7,8 @@ class ApiBase {
 
 	static authHeaders() {
     let headers = {}
-    if (StorageHelper.get('token')) {
-      headers.Authorization = 'Bearer ' + StorageHelper.get('token')
+    if (CookiesHelper.get('token')) {
+      headers.Authorization = 'Bearer ' + CookiesHelper.get('token')
     }
     return { ...headers }
   }

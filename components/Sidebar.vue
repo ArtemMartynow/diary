@@ -2,7 +2,7 @@
   <div :class="Object.keys(diaryStore.selectedNote).length === 0 ? 'sidebar pb-24 text-center flex flex-col justify-between h-screen relative' : 'sidebar_active pb-24 text-center flex flex-col justify-between h-screen relative'">
     <div class="sidebar-header flex justify-between items-center shrink-0">
       <NuxtImg 
-        src="../public/images/right-from-bracket-solid.svg" 
+        src="/images/right-from-bracket-solid.svg" 
         alt="logout"  
         @click="logout()"
       />
@@ -28,7 +28,11 @@
       </div>
     </div>
     <button>
-      <NuxtImg @click="isCreateNote = true" src="/images/xmark-solid.svg" alt="xmark" />
+      <NuxtImg 
+        @click="isCreateNote = true" 
+        src="/images/xmark-solid.svg" 
+        alt="xmark" 
+      />
     </button>
     <NoteCreatorEditorModal 
       v-if="isCreateNote === true"
@@ -41,8 +45,7 @@
 </template>
 
 <script setup>
-import StorageHelper from '~/helpers/localStorageHelper'
-import { useDiaryStore } from '../stores/diaryStore'
+import CookiesHelper from '~/helpers/CookiesHelper'
 
 const diaryStore = useDiaryStore()
 const router = useRouter()
@@ -58,7 +61,7 @@ let newNotesList = computed(() => {
 
 const logout = () => {
   $notify('success', 'You log out')
-  StorageHelper.remove('token')
+  CookiesHelper.remove('token')
   router.push('/auth/login')
 }
 </script>

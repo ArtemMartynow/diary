@@ -10,23 +10,29 @@
     <h2 class="text-4xl mb-2">{{ $t('news') }}</h2>
     <div class="home__filter flex items-center justify-center mb-5">
       <span>Filter:</span>
-      <input type="text" placeholder="Author" class="ml-2" v-model="filterAuthor">
-      <input type="text" placeholder="Tags" class="mx-2" v-model="filterTags">
-      <VSelect 
-        :options="options"
-        :noValue="'Sort by date'"
-        v-model="sortDate"
-      />
+      <input @input="sortNews()" type="text" placeholder="Author" class="ml-2" v-model="filterAuthor">
     </div>
-    <ContentCard 
-      v-for="news in filteredNews"
-      :key="news.id"
-      :title="news.title"
-      :text="news.text"
-      :date="news.createdAt"
-      :author="news.author"
-      :tags="news.tags"
+    <template v-if="!isLoading">
+      <ContentCard 
+        v-for="news in homeStore.news"
+        :key="news.id"
+        :title="news.title"
+        :text="news.text"
+        :date="news.createdAt"
+        :author="news.author"
+        :tags="news.tags"
+      />
+    </template>
+    <NuxtImg 
+      src="/images/spinner-solid.svg" 
+      alt="loading" 
+      class="animate-spin w-20 mx-auto"
+      v-else 
     />
+    <h3 
+      v-if="homeStore.news.length === 0 && !isLoading"
+      class="text-4xl py-10 rounded-3xl"  
+    >News not found</h3>
   </div>
   <div class="home__feedback">
     <h2 class="text-4xl mb-2">{{ $t('feedback') }}</h2>
@@ -41,65 +47,46 @@
 </template>
 
 <script setup>
-import { useHomeStore } from '../stores/homeStore'
+import HomeApi from '~/api/home'
+import { debounce } from 'lodash'
 
 const homeStore = useHomeStore()
 const localePath = useLocalePath()
 const router = useRouter() 
+const route = useRoute()
 
-let options = ref([
-  {
-    name: 'Sort by date',
-    value: ''
-  },
-  {
-    name: 'Ascending',
-    value: 'ascending'
-  },
-  {
-    name: 'Descending',
-    value: 'descending'
-  }
-])
+let isLoading = ref(false)
+const filterAuthor = ref(route.query.author || '') 
 
-const filterAuthor = ref('') 
-const filterTags = ref('') 
-const sortDate = ref('') 
-const filteredNews = computed(() => { 
-  let news = homeStore.news 
-  if (filterAuthor.value) { 
-    news = news.filter(n => n.author.toLowerCase().includes(filterAuthor.value.toLowerCase())) 
-  } 
-  if (filterTags.value) { 
-    const tagsArray = filterTags.value.split(',').map(tag => tag.trim().toLowerCase()) 
-    news = news.filter(n => { 
-      return tagsArray.some(tag => n.tags.some(newsTag => newsTag.toLowerCase().includes(tag))) 
-    }) 
-  }
-
-  if (sortDate.value === 'ascending') { 
-    news = news.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)) 
-  } else if (sortDate.value === 'descending') { 
-    news = news.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) 
-  } 
-    
-  return news 
-})
-
-const updateQueryParams = () => { 
+const updateQueryParams = debounce(() => { 
   const query = {} 
   if (filterAuthor.value) {
     query.author = filterAuthor.value
   } 
-  if (filterTags.value) {
-    query.tags = filterTags.value
-  } 
-  if (sortDate.value) {
-    query['sort-date'] = sortDate.value
-  } 
-  router.push({ path: '/', query }) 
-} 
-watch([filterAuthor, filterTags, sortDate], () => { 
+  router.push({ path: route.path, query })
+  HomeApi.getNews(query)
+  .then((response) => {
+    homeStore.getNews(response) 
+    isLoading.value = false
+  })
+}, 1000)
+
+const sortNews = () => {
+  isLoading.value = true
+  updateQueryParams()
+}
+
+const { data } = useAsyncData('homeData', async () => { 
+  const [newsResponse, feedbackResponse] = await Promise.all([ 
+    HomeApi.getNews(), 
+    HomeApi.getFeedback() 
+  ]) 
+  homeStore.getNews(newsResponse) 
+  homeStore.getFeedback(feedbackResponse) 
+  return { newsResponse, feedbackResponse }
+})
+
+watch([filterAuthor], () => { 
   updateQueryParams() 
 }, { immediate: true })
 </script>
