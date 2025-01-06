@@ -1,23 +1,22 @@
-import Cookies from 'js-cookie'
-
 class CookiesHelper {
   static get(key) {
-    const data = Cookies.get(key)
+    const cookie = useCookie(key)
 
     try {
-      return JSON.parse(data)
+      return JSON.parse(cookie.value)
     } catch (e) {
-      return data
+      return cookie.value
     }
   }
 
   static set(key, data, options = {}) {
-    data = typeof data === 'string' ? data : JSON.stringify(data)
-    Cookies.set(key, data, options)
+    const cookie = useCookie(key, options);
+    cookie.value = typeof data === 'string' ? data : JSON.stringify(data);
   }
 
   static remove(key) {
-    Cookies.remove(key)
+    const cookie = useCookie(key)
+    cookie.value = null
   }
 }
 
